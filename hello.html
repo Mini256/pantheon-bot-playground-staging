@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
     <title>Hello, elevated.</title>
     <link
       rel="preconnect"
@@ -69,12 +70,17 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
         padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
         font-family: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
         background: radial-gradient(circle at 20% 20%, var(--bg-alt), var(--bg) 65%);
+        background-color: var(--bg);
         color: var(--text-primary);
         line-height: 1.6;
         display: flex;
@@ -135,23 +141,26 @@
       }
 
       .skip-link {
-        position: absolute;
-        top: 0.5rem;
+        position: fixed;
+        top: 0.75rem;
         left: 50%;
         transform: translate(-50%, -150%);
-        background: var(--text-primary);
-        color: #020409;
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        color: #050915;
         padding: 0.75rem 1.25rem;
         border-radius: 999px;
         text-decoration: none;
         font-weight: 600;
-        transition: transform var(--transition-base);
-        z-index: 2;
+        transition: transform var(--transition-base), opacity var(--transition-base);
+        z-index: 3;
         box-shadow: var(--shadow);
+        opacity: 0;
       }
 
-      .skip-link:focus-visible {
+      .skip-link:focus-visible,
+      .skip-link:active {
         transform: translate(-50%, 0);
+        opacity: 1;
       }
 
       main {
@@ -518,6 +527,10 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
         :root {
           --transition-base: 0ms;
           --transition-long: 0ms;
@@ -556,14 +569,70 @@
           --accent-strong: #4ade80;
         }
 
+        body {
+          color: var(--text-primary);
+        }
+
+        p,
+        .tone-hint {
+          color: var(--text-primary);
+        }
+
+        .primary {
+          box-shadow: none;
+        }
+
+        .secondary {
+          border-color: rgba(255, 255, 255, 0.6);
+        }
+
         .card::after {
           border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        article {
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(255, 255, 255, 0.35);
+        }
+      }
+
+      @media (prefers-reduced-data: reduce) {
+        .ambient {
+          display: none;
+        }
+
+        main {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          background: var(--bg-accent);
+        }
+
+        .card::after {
+          display: none;
         }
       }
 
       @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
         .card {
           background: var(--card-solid);
+        }
+      }
+
+      @media (forced-colors: active) {
+        .ambient {
+          display: none;
+        }
+
+        .skip-link,
+        .action-button,
+        .toggle-button,
+        main,
+        .card {
+          forced-color-adjust: none;
+          background: Canvas;
+          color: CanvasText;
+          border: 1px solid CanvasText;
+          box-shadow: none;
         }
       }
 
@@ -603,8 +672,8 @@
       <span class="glow glow-two"></span>
       <span class="glow glow-three"></span>
     </div>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <main id="main-content" aria-labelledby="page-title" tabindex="-1">
+    <a class="skip-link" href="#main-content">Skip to greeting controls</a>
+    <main id="main-content" aria-labelledby="page-title" aria-describedby="page-intro" tabindex="-1">
       <header>
         <div class="header-row">
           <span class="hello-badge" aria-hidden="true">hello</span>
@@ -627,22 +696,26 @@
           </div>
         </div>
         <h1 id="page-title">Polished greetings that evolve with your tone.</h1>
-        <p>
+        <p id="page-intro">
           Hello isn't just a word—it's the opening note to every great conversation. Tune the vibe, honor preferences,
           and send a message that feels intentional every single time.
         </p>
       </header>
 
-      <section class="card" aria-labelledby="spark-title">
+      <section class="card" role="region" aria-labelledby="spark-title" aria-describedby="message-description">
         <h2 id="spark-title">Today's spark</h2>
+        <p id="message-description" class="sr-only">
+          Personalized greeting lines rotate here. Adjust the mood filter or activate refresh to hear a new line—the updated
+          greeting and its metadata are announced automatically.
+        </p>
         <div class="tone-selector">
           <label>
             Choose a mood
-            <select id="mood-filter" name="mood-filter">
+            <select id="mood-filter" name="mood-filter" aria-describedby="tone-hint">
               <option value="any">Surprise me</option>
             </select>
           </label>
-          <p class="tone-hint">Prefer calm energy? The motion control above adapts animations instantly.</p>
+          <p class="tone-hint" id="tone-hint">Prefer calm energy? The motion control above adapts animations instantly.</p>
         </div>
         <p
           id="hello-message"
@@ -650,6 +723,7 @@
           aria-live="polite"
           aria-atomic="true"
           tabindex="-1"
+          aria-describedby="message-description"
           data-default-message="Hello, world. You're looking radiant today."
         >
           Hello, world. You're looking radiant today.
@@ -669,27 +743,27 @@
           </span>
         </div>
         <div class="actions" role="group" aria-label="Greeting actions">
-          <button type="button" id="refresh" class="action-button primary">
+          <button type="button" id="refresh" class="action-button primary" aria-describedby="message-description">
             <span class="button-label">Refresh greeting</span>
           </button>
           <button type="button" id="copy" class="action-button secondary">
             <span class="button-label" id="copy-label">Copy greeting</span>
           </button>
-          <a class="action-button secondary" href="#reasons">Explore the etiquette</a>
+          <a class="action-button secondary" href="#reasons" aria-describedby="reasons-title">Explore the etiquette</a>
         </div>
       </section>
 
-      <section id="reasons" class="grid" aria-labelledby="reasons-title">
+      <section id="reasons" class="grid" aria-labelledby="reasons-title" role="list">
         <h2 id="reasons-title" class="sr-only">Reasons to keep saying hello</h2>
-        <article>
+        <article role="listitem">
           <h3>Clarity</h3>
           <p>Lead with confident pacing, generous space, and responsive typography so every greeting lands softly.</p>
         </article>
-        <article>
+        <article role="listitem">
           <h3>Presence</h3>
           <p>Atmospheric gradients and tactile shadows invite focus without overwhelming attention spans.</p>
         </article>
-        <article>
+        <article role="listitem">
           <h3>Warmth</h3>
           <p>Balanced contrast, nuanced color, and motion preferences keep the experience accessible for all.</p>
         </article>
@@ -716,6 +790,8 @@
       const moodValue = document.querySelector("#hello-mood .pill-value");
       const categoryValue = document.querySelector("#hello-category .pill-value");
       const updatedAt = document.getElementById("message-updated");
+      const mainContent = document.getElementById("main-content");
+      const skipLink = document.querySelector(".skip-link");
       const defaultMessage = (message?.dataset.defaultMessage || message?.textContent || "").trim();
 
       const greetings = [
@@ -914,6 +990,20 @@
       motionToggle?.addEventListener("click", () => {
         const nextMotion = html.dataset.motion === "expressive" ? "calm" : "expressive";
         applyMotion(nextMotion, true);
+      });
+
+      skipLink?.addEventListener("click", (event) => {
+        if (!mainContent) return;
+        event.preventDefault();
+        const prefersCalmScroll = prefersReducedMotion?.matches ?? false;
+        try {
+          mainContent.focus({ preventScroll: prefersCalmScroll });
+        } catch (error) {
+          mainContent.focus();
+        }
+        if (!prefersCalmScroll) {
+          mainContent.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
 
       const fallbackCopy = (text) => {
