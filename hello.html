@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello, elevated.</title>
     <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
       crossorigin
-    />
+    >
     <link
       rel="preconnect"
       href="https://fonts.gstatic.com"
       crossorigin
-    />
+    >
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+    >
+    <link
       rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+      media="print"
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap">
+    </noscript>
     <style>
       :root {
         color-scheme: dark;
         --bg: #030915;
         --bg-accent: #111c36;
         --card: rgba(10, 19, 43, 0.85);
+        --card-solid: #0b1328;
         --text-primary: #f5f6fb;
         --text-muted: #b4bed5;
         --accent: #7dd2ff;
         --accent-strong: #34d399;
+        --focus-ring: #facc15;
         --shadow: 0 20px 45px rgba(3, 11, 29, 0.6);
         --radius: 22px;
       }
@@ -49,6 +61,26 @@
         line-height: 1.6;
       }
 
+      .skip-link {
+        position: absolute;
+        top: 0.5rem;
+        left: 50%;
+        transform: translate(-50%, -150%);
+        background: var(--text-primary);
+        color: #020409;
+        padding: 0.75rem 1.25rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 180ms ease;
+        z-index: 99;
+        box-shadow: var(--shadow);
+      }
+
+      .skip-link:focus-visible {
+        transform: translate(-50%, 0);
+      }
+
       main {
         width: min(1100px, 100%);
         display: flex;
@@ -59,6 +91,12 @@
         border-radius: var(--radius);
         padding: clamp(1.5rem, 5vw, 3rem);
         box-shadow: var(--shadow);
+        outline: none;
+      }
+
+      main:focus-visible {
+        outline: 3px solid rgba(250, 204, 21, 0.6);
+        outline-offset: 6px;
       }
 
       header {
@@ -93,6 +131,7 @@
         padding: clamp(1.5rem, 4vw, 2.5rem);
         border: 1px solid rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
         box-shadow: var(--shadow);
       }
 
@@ -142,7 +181,7 @@
 
       button:focus-visible,
       .secondary:focus-visible {
-        outline: 3px solid rgba(255, 255, 255, 0.5);
+        outline: 3px solid var(--focus-ring);
         outline-offset: 4px;
       }
 
@@ -190,6 +229,18 @@
         color: var(--text-muted);
       }
 
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
       @media (max-width: 640px) {
         .actions {
           flex-direction: column;
@@ -201,19 +252,54 @@
           width: 100%;
           text-align: center;
         }
+
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
         * {
           transition: none !important;
         }
+
+        button,
+        .secondary {
+          transform: none !important;
+          box-shadow: none;
+        }
+      }
+
+      @media (prefers-contrast: more) {
+        :root {
+          --card: rgba(10, 19, 43, 0.95);
+          --bg-accent: #0b1530;
+          --accent: #8df0ff;
+          --accent-strong: #4ade80;
+        }
+
+        button {
+          box-shadow: none;
+        }
+
+        article {
+          background: rgba(255, 255, 255, 0.08);
+        }
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .card {
+          background: var(--card-solid);
+        }
       }
     </style>
   </head>
   <body>
-    <main role="main" aria-labelledby="page-title">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" aria-labelledby="page-title" tabindex="-1">
       <header>
-        <span class="hello-badge" aria-label="A warm hello badge">hello</span>
+        <span class="hello-badge" aria-hidden="true">hello</span>
         <h1 id="page-title">Polished greetings for modern teams.</h1>
         <p>
           Hello isn't just a word—it's the opening note to every great conversation. Here's a refined experience for
@@ -221,16 +307,32 @@
         </p>
       </header>
 
-      <section class="card" aria-live="polite">
-        <h2>Today's spark</h2>
-        <p id="hello-message">Hello, world. You're looking radiant today.</p>
-        <div class="actions">
-          <button type="button" id="refresh" aria-label="Generate another greeting">Refresh greeting</button>
+      <section class="card" aria-labelledby="spark-title">
+        <h2 id="spark-title">Today's spark</h2>
+        <p
+          id="hello-message"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          tabindex="-1"
+          data-default-message="Hello, world. You're looking radiant today."
+        >
+          Hello, world. You're looking radiant today.
+        </p>
+        <div class="actions" role="group" aria-label="Greeting actions">
+          <button
+            type="button"
+            id="refresh"
+            aria-controls="hello-message"
+          >
+            Refresh greeting
+          </button>
           <a class="secondary" href="#reasons">Explore the etiquette</a>
         </div>
       </section>
 
-      <section id="reasons" class="grid" aria-label="Reasons to keep saying hello">
+      <section id="reasons" class="grid" aria-labelledby="reasons-title">
+        <h2 id="reasons-title" class="sr-only">Reasons to keep saying hello</h2>
         <article>
           <h3>Clarity</h3>
           <p>Lead with a confident tone, a steady pace, and generous space. It keeps the message calm and clear.</p>
@@ -247,7 +349,7 @@
 
       <footer role="contentinfo">
         <span>Hand-tuned for Pantheon &mdash; crafted with care.</span>
-        <span aria-label="Updated just now">Updated moments ago</span>
+        <span>Updated moments ago</span>
       </footer>
     </main>
 
@@ -263,10 +365,41 @@
       const message = document.getElementById("hello-message");
       const refresh = document.getElementById("refresh");
 
+      const defaultMessage = (message.dataset.defaultMessage || message.textContent).trim();
+      let previousIndex = greetings.indexOf(defaultMessage);
+
+      const focusMessage = () => {
+        if (document.activeElement !== refresh) return;
+        try {
+          message.focus({ preventScroll: true });
+        } catch (error) {
+          message.focus();
+        }
+      };
+
+      const pickGreeting = () => {
+        if (greetings.length === 1) {
+          previousIndex = 0;
+          return greetings[0];
+        }
+
+        let nextIndex = previousIndex;
+        while (nextIndex === previousIndex) {
+          nextIndex = Math.floor(Math.random() * greetings.length);
+        }
+
+        previousIndex = nextIndex;
+        return greetings[nextIndex];
+      };
+
       refresh.addEventListener("click", () => {
-        const next = Math.floor(Math.random() * greetings.length);
-        message.textContent = greetings[next];
+        const nextGreeting = pickGreeting();
+        message.textContent = nextGreeting;
+        message.setAttribute("data-current", nextGreeting);
+        focusMessage();
       });
+
+      message.setAttribute("data-current", defaultMessage);
     </script>
   </body>
 </html>
