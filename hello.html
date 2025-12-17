@@ -3,9 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <meta name="description" content="A refined hello world experience with modern styling and inclusive design.">
+  <title>Hello, refined.</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg-start: #0f172a;
+      --bg-end: #312e81;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5f5;
+      --accent: #38bdf8;
+      --accent-strong: #f472b6;
+      --shadow-color: rgba(15, 23, 42, 0.35);
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: radial-gradient(circle at 20% 20%, #1f2937, transparent 40%), linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text-primary);
+      font-family: inherit;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(90vw, 760px);
+    }
+
+    .hello-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 25px 50px -12px var(--shadow-color);
+      backdrop-filter: blur(18px);
+      transition: transform 350ms ease, box-shadow 350ms ease;
+    }
+
+    .hello-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.35), transparent 40%), radial-gradient(circle at 80% 0%, rgba(244, 114, 182, 0.4), transparent 45%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      transition: opacity 350ms ease;
+    }
+
+    .hello-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 70px -18px var(--shadow-color);
+    }
+
+    .hello-card:hover::before {
+      opacity: 0.85;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .accent-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      display: grid;
+      place-items: center;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.35), 0 12px 30px rgba(56, 189, 248, 0.4);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 3.25rem);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-secondary);
+      max-width: 48ch;
+    }
+
+    section {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .hello-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.85rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #0f172a;
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 15px 25px -15px rgba(56, 189, 248, 0.9);
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 30px -15px rgba(56, 189, 248, 0.85);
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(56, 189, 248, 0.75);
+      outline-offset: 3px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      background: rgba(15, 23, 42, 0.55);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1.5rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hello-card {
+        padding: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>hello world</h1>
+  <main>
+    <article class="hello-card" aria-labelledby="hello-heading" aria-describedby="hello-summary">
+      <header>
+        <div class="accent-ring" aria-hidden="true">Hi</div>
+        <div>
+          <p class="status-pill" role="status" aria-live="polite">
+            <span aria-hidden="true">●</span>
+            Always-on greeting
+          </p>
+          <h1 id="hello-heading">Hello, world—crafted with care.</h1>
+        </div>
+      </header>
+
+      <section>
+        <p id="hello-summary">
+          This hello world is more than a placeholder; it is a small showcase of typography, color, and inclusive interaction that demonstrates how even the simplest page can feel intentional.
+        </p>
+        <p>
+          Explore the greeting, experience the soft gradients, and notice the considerate touches from accessible contrast to reduced-motion preferences. It is still “hello world,” just better dressed.
+        </p>
+        <div class="hello-actions">
+          <button id="refreshGreeting" type="button" aria-label="Generate a fresh greeting" aria-describedby="greeting-output">
+            Refresh Hello
+          </button>
+          <span id="greeting-output" data-greeting role="status" aria-live="polite" class="status-pill">
+            Ready when you are.
+          </span>
+        </div>
+      </section>
+
+      <footer>
+        Designed for clarity, comfort, and a gentle first impression—because details matter even in a hello.
+      </footer>
+    </article>
+  </main>
+
+  <script>
+    const greetings = [
+      'Hello, luminous traveler.',
+      'Welcome—your ideas look brilliant today.',
+      'Hello world, refined and ready.',
+      'Greetings from a polished corner of the web.',
+      'Hi there! The canvas is yours.'
+    ];
+
+    const greetingOutput = document.querySelector('[data-greeting]');
+    const refreshButton = document.getElementById('refreshGreeting');
+
+    function setGreeting(message) {
+      greetingOutput.textContent = message;
+    }
+
+    refreshButton.addEventListener('click', () => {
+      const selection = greetings[Math.floor(Math.random() * greetings.length)];
+      setGreeting(selection);
+    });
+
+    // Initialize with a random greeting for variety.
+    setGreeting(greetings[0]);
+  </script>
 </body>
 </html>
