@@ -2,34 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, elevated.</title>
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-      crossorigin
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A modern, accessible, and polished hello world experience tailored for Pantheon workflows."
     />
+    <meta name="theme-color" content="#050b1c" />
+    <title>Hello, world — Pantheon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         color-scheme: dark;
-        --bg: #030915;
-        --bg-accent: #111c36;
-        --card: rgba(10, 19, 43, 0.85);
-        --text-primary: #f5f6fb;
-        --text-muted: #b4bed5;
-        --accent: #7dd2ff;
-        --accent-strong: #34d399;
-        --shadow: 0 20px 45px rgba(3, 11, 29, 0.6);
-        --radius: 22px;
+        --bg: #040b1c;
+        --bg-soft: #0b183a;
+        --card: rgba(9, 16, 36, 0.85);
+        --card-muted: rgba(255, 255, 255, 0.04);
+        --text: #f6f8ff;
+        --text-muted: #c1c8da;
+        --accent: #7ee0ff;
+        --accent-strong: #ffb347;
+        --accent-soft: rgba(126, 224, 255, 0.28);
+        --border: rgba(255, 255, 255, 0.08);
+        --glow: 0 25px 60px rgba(3, 10, 26, 0.85);
+        --radius-xl: 28px;
+        --radius-md: 18px;
+        font-family: "Space Grotesk", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       * {
@@ -39,155 +41,230 @@
       body {
         margin: 0;
         min-height: 100vh;
-        padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
+        padding: clamp(1.5rem, 5vw, 4rem);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: radial-gradient(circle at top, #10264d, #030915 65%);
-        color: var(--text-primary);
-        line-height: 1.6;
+        background: radial-gradient(circle at 25% -10%, #20386a, transparent 55%),
+          radial-gradient(circle at 80% 0, #122345, transparent 45%), #050b1c;
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: #041024;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 0.5rem;
+        left: 50%;
+        transform: translate(-50%, -200%);
+        padding: 0.75rem 1.25rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #031226;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+        z-index: 10;
+      }
+
+      .skip-link:focus-visible {
+        transform: translate(-50%, 0);
       }
 
       main {
-        width: min(1100px, 100%);
+        width: min(1200px, 100%);
+        background: linear-gradient(135deg, var(--bg-soft), rgba(9, 18, 45, 0.35));
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: clamp(1.75rem, 4vw, 3.5rem);
+        box-shadow: var(--glow);
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-        background: linear-gradient(145deg, var(--bg-accent), transparent 70%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: var(--radius);
-        padding: clamp(1.5rem, 5vw, 3rem);
-        box-shadow: var(--shadow);
+        gap: clamp(1.5rem, 3vw, 3rem);
       }
 
-      header {
+      header.hero {
         display: grid;
-        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(1.5rem, 3vw, 3rem);
+        align-items: center;
       }
 
-      .hello-badge {
-        width: fit-content;
-        padding: 0.35rem 0.8rem;
+      .eyebrow {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.35rem 0.9rem;
+        margin-bottom: 1rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        border: 1px solid var(--accent-soft);
         text-transform: uppercase;
         letter-spacing: 0.25em;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: var(--accent);
       }
 
-      h1 {
-        font-size: clamp(2.25rem, 5vw, 3.5rem);
-        margin: 0;
+      .eyebrow::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
       }
 
-      p {
+      h1 {
         margin: 0;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.15;
+      }
+
+      .hero p {
         color: var(--text-muted);
+        margin: 1rem 0 1.5rem;
+      }
+
+      .inline-accent {
+        color: var(--accent-strong);
+      }
+
+      .hero-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .hero-list li {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.85rem 1rem;
+        border-radius: var(--radius-md);
+        background: var(--card-muted);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+      }
+
+      .hero-list li::before {
+        content: "";
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px var(--accent-soft);
       }
 
       .card {
         background: var(--card);
-        border-radius: var(--radius);
-        padding: clamp(1.5rem, 4vw, 2.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(14px);
-        box-shadow: var(--shadow);
+        border-radius: var(--radius-xl);
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+        box-shadow: var(--glow);
       }
 
-      .card h2 {
-        margin: 0 0 0.5rem;
-        font-size: 1.2rem;
-        letter-spacing: 0.08em;
+      .card__meta {
         text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.8rem;
         color: var(--accent);
+        margin-bottom: 0.85rem;
       }
 
       #hello-message {
-        font-size: 1.4rem;
-        margin-bottom: 1.6rem;
-        color: var(--text-primary);
+        font-size: clamp(1.5rem, 2.4vw, 2rem);
+        margin: 0 0 1.75rem;
+        color: var(--text);
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.9rem;
         align-items: center;
       }
 
       button,
       .secondary {
-        border: none;
         border-radius: 999px;
-        padding: 0.95rem 1.8rem;
+        padding: 0.95rem 1.9rem;
         font-size: 1rem;
         font-weight: 600;
+        border: none;
         cursor: pointer;
-        transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+        transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
       }
 
       button {
-        color: #050915;
         background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-        box-shadow: 0 15px 30px rgba(125, 210, 255, 0.3);
+        color: #041422;
+        box-shadow: 0 20px 35px rgba(5, 12, 32, 0.45);
       }
 
-      button:hover,
+      button:hover {
+        transform: translateY(-2px);
+      }
+
       button:focus-visible {
-        transform: translateY(-2px) scale(1.01);
-        box-shadow: 0 20px 35px rgba(125, 210, 255, 0.4);
-      }
-
-      button:focus-visible,
-      .secondary:focus-visible {
-        outline: 3px solid rgba(255, 255, 255, 0.5);
+        outline: 3px solid rgba(255, 255, 255, 0.9);
         outline-offset: 4px;
       }
 
       .secondary {
         background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: var(--text-primary);
+        border: 1px solid var(--border);
+        color: var(--text);
         text-decoration: none;
         text-align: center;
       }
 
-      .secondary:hover {
-        border-color: var(--accent);
+      .secondary:hover,
+      .secondary:focus-visible {
         color: var(--accent);
+        border-color: var(--accent);
+        outline: 3px solid rgba(255, 255, 255, 0.4);
+        outline-offset: 4px;
       }
 
-      .grid {
+      section.grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1.5rem;
       }
 
-      article {
-        padding: 1.4rem;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      section.grid h2 {
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin: 0 0 0.5rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      article h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
-        color: var(--accent-strong);
+      article {
+        padding: 1.35rem;
+        border-radius: var(--radius-md);
+        background: var(--card-muted);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
       }
 
       footer {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 0.5rem;
         font-size: 0.95rem;
         color: var(--text-muted);
+      }
+
+      footer time {
+        color: var(--accent);
       }
 
       @media (max-width: 640px) {
@@ -199,73 +276,97 @@
         button,
         .secondary {
           width: 100%;
-          text-align: center;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        * {
-          transition: none !important;
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
         }
       }
     </style>
   </head>
   <body>
-    <main role="main" aria-labelledby="page-title">
-      <header>
-        <span class="hello-badge" aria-label="A warm hello badge">hello</span>
-        <h1 id="page-title">Polished greetings for modern teams.</h1>
-        <p>
-          Hello isn't just a word—it's the opening note to every great conversation. Here's a refined experience for
-          sharing it with intention.
-        </p>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" role="main" aria-labelledby="page-title">
+      <header class="hero">
+        <div>
+          <p class="eyebrow" aria-label="Greeting category">Signal · Hello</p>
+          <h1 id="page-title">
+            Hello, world.
+            <span class="inline-accent">A small phrase, a generous welcome.</span>
+          </h1>
+          <p>
+            This lightweight hero makes it effortless to say hello with intent—centered layout, accessible contrast, and
+            warm microcopy ready for demos or onboarding moments.
+          </p>
+          <ul class="hero-list" aria-label="Design principles for this hello">
+            <li>Semantic HTML5 structure with responsive grid layout</li>
+            <li>Accessible contrast and focus states for every action</li>
+            <li>Adaptive typography powered by Space Grotesk + Inter</li>
+          </ul>
+        </div>
+
+        <section class="card" aria-live="polite" aria-atomic="true">
+          <p class="card__meta">Today's greeting</p>
+          <p id="hello-message">Hello, world. You're glowing with potential.</p>
+          <div class="actions">
+            <button type="button" id="refresh" aria-describedby="hello-message">Refresh greeting</button>
+            <a class="secondary" href="#why-hello">Why hello matters</a>
+          </div>
+        </section>
       </header>
 
-      <section class="card" aria-live="polite">
-        <h2>Today's spark</h2>
-        <p id="hello-message">Hello, world. You're looking radiant today.</p>
-        <div class="actions">
-          <button type="button" id="refresh" aria-label="Generate another greeting">Refresh greeting</button>
-          <a class="secondary" href="#reasons">Explore the etiquette</a>
-        </div>
-      </section>
-
-      <section id="reasons" class="grid" aria-label="Reasons to keep saying hello">
+      <section id="why-hello" class="grid" aria-label="Ways hello elevates collaboration">
         <article>
-          <h3>Clarity</h3>
-          <p>Lead with a confident tone, a steady pace, and generous space. It keeps the message calm and clear.</p>
+          <h2>Clarity</h2>
+          <p>Lead with generous whitespace and high-contrast typography so every greeting lands with confidence.</p>
         </article>
         <article>
-          <h3>Presence</h3>
-          <p>Thoughtful gradients, soft glow, and tactile shadows draw the eye without overwhelming the senses.</p>
+          <h2>Presence</h2>
+          <p>Layered gradients and glassmorphism hints add depth while keeping focus on the words that matter.</p>
         </article>
         <article>
-          <h3>Warmth</h3>
-          <p>Balanced typography and contrast ensure the greeting is welcoming and accessible to everyone.</p>
+          <h2>Warmth</h2>
+          <p>Friendly motion defaults, live region announcements, and skip links keep every visitor included.</p>
         </article>
       </section>
 
       <footer role="contentinfo">
-        <span>Hand-tuned for Pantheon &mdash; crafted with care.</span>
-        <span aria-label="Updated just now">Updated moments ago</span>
+        <p>Hand-tuned for Pantheon · performance first, people always.</p>
+        <p>Updated <time datetime="2024-06-11">today</time></p>
       </footer>
     </main>
 
     <script>
       const greetings = [
-        "Hello, world. You're looking radiant today.",
-        "Hello, world. May your ideas find the right audience.",
-        "Hello, world. Let's turn quiet sparks into bright stories.",
-        "Hello, world. Your presence shapes the room.",
-        "Hello, world. Every connection starts right here."
+        "Hello, world. You're glowing with potential.",
+        "Hello, world. Your next idea is almost here.",
+        "Hello, world. Let's turn small sparks into bright teams.",
+        "Hello, world. Breathe in, speak up, stay kind.",
+        "Hello, world. The room feels better with you in it."
       ];
 
       const message = document.getElementById("hello-message");
       const refresh = document.getElementById("refresh");
+      let previousIndex = 0;
+
+      const rotateGreeting = () => {
+        let next = Math.floor(Math.random() * greetings.length);
+        if (next === previousIndex) {
+          next = (next + 1) % greetings.length;
+        }
+        previousIndex = next;
+        message.textContent = greetings[next];
+      };
 
       refresh.addEventListener("click", () => {
-        const next = Math.floor(Math.random() * greetings.length);
-        message.textContent = greetings[next];
+        rotateGreeting();
       });
     </script>
   </body>
