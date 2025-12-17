@@ -1,11 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
-</head>
-<body>
-  <h1>hello world</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, World</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: radial-gradient(circle at top, #fef4ff 0%, #eef4ff 40%, #ecf0f8 70%, #e7eef5 100%);
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --accent: #5a45ff;
+        --accent-dark: #4332c7;
+        --text: #1f2a37;
+        --text-muted: #4b5563;
+        --border: rgba(90, 69, 255, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+        background-image: var(--bg);
+        background-attachment: fixed;
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      main {
+        width: min(600px, 100%);
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 28px;
+        padding: 3rem;
+        box-shadow:
+          0 25px 50px rgba(15, 23, 42, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 20% auto auto -20%;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(130deg, rgba(90, 69, 255, 0.15), transparent);
+        filter: blur(50px);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      header {
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 0 0 0.75rem;
+        letter-spacing: -0.03em;
+      }
+
+      p.lede {
+        margin: 0;
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      section {
+        position: relative;
+        z-index: 1;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(90, 69, 255, 0.12);
+        color: var(--accent-dark);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .action {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      button {
+        border: none;
+        border-radius: 16px;
+        background: radial-gradient(circle at 20% 20%, #7c6ffb, #5a45ff);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        font-size: 1rem;
+        padding: 0.9rem 1.8rem;
+        cursor: pointer;
+        box-shadow:
+          0 10px 30px rgba(90, 69, 255, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      button:focus-visible {
+        outline: 3px solid rgba(90, 69, 255, 0.35);
+        outline-offset: 4px;
+      }
+
+      button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow:
+          0 15px 35px rgba(90, 69, 255, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      }
+
+      button:active {
+        transform: translateY(0) scale(0.99);
+      }
+
+      .status {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      ul.features {
+        list-style: none;
+        padding: 0;
+        margin: 2.5rem 0 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      ul.features li {
+        display: flex;
+        gap: 0.75rem;
+        align-items: baseline;
+      }
+
+      ul.features li span {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background: rgba(90, 69, 255, 0.15);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-dark);
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 1.5rem;
+        }
+
+        .card {
+          padding: 2rem;
+        }
+
+        .action {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main" aria-labelledby="hello-title">
+      <article class="card" role="article" aria-describedby="hello-summary">
+        <header>
+          <div class="pill" aria-hidden="true">Crafted greeting</div>
+          <h1 id="hello-title">Hello, world</h1>
+          <p class="lede" id="hello-summary">
+            Your friendly greeting, reimagined with thoughtful typography, calm gradients, and delightful
+            interactions.
+          </p>
+        </header>
+
+        <section aria-live="polite" aria-atomic="true">
+          <div class="action">
+            <button type="button" id="hello-button" aria-controls="hello-message">
+              Refresh the greeting
+            </button>
+            <div class="status" id="hello-message">Welcome aboard — the world is glad you're here.</div>
+          </div>
+        </section>
+
+        <section aria-label="Experience highlights">
+          <ul class="features">
+            <li>
+              <span aria-hidden="true">1</span>
+              Balanced contrast and spacing keep the message effortless to read.
+            </li>
+            <li>
+              <span aria-hidden="true">2</span>
+              Smooth hover and focus states ensure keyboard and pointer comfort.
+            </li>
+            <li>
+              <span aria-hidden="true">3</span>
+              Accessible semantics make screen readers feel right at home.
+            </li>
+          </ul>
+        </section>
+      </article>
+    </main>
+
+    <script>
+      const phrases = [
+        "Welcome aboard — the world is glad you're here.",
+        "Here's to bright ideas and even brighter days.",
+        "Hello there! May your code run fast and flawless.",
+        "The world waves back with a smile just for you."
+      ];
+      const button = document.querySelector("#hello-button");
+      const message = document.querySelector("#hello-message");
+
+      button?.addEventListener("click", () => {
+        const current = message.textContent?.trim();
+        const options = phrases.filter((text) => text !== current);
+        const next = options[Math.floor(Math.random() * options.length)] || phrases[0];
+        message.textContent = next;
+      });
+    </script>
+  </body>
 </html>
