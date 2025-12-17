@@ -1,11 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
-</head>
-<body>
-  <h1>hello world</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello, elevated.</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #030915;
+        --bg-accent: #111c36;
+        --card: rgba(10, 19, 43, 0.85);
+        --text-primary: #f5f6fb;
+        --text-muted: #b4bed5;
+        --accent: #7dd2ff;
+        --accent-strong: #34d399;
+        --shadow: 0 20px 45px rgba(3, 11, 29, 0.6);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at top, #10264d, #030915 65%);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(1100px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background: linear-gradient(145deg, var(--bg-accent), transparent 70%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        padding: clamp(1.5rem, 5vw, 3rem);
+        box-shadow: var(--shadow);
+      }
+
+      header {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .hello-badge {
+        width: fit-content;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(14px);
+        box-shadow: var(--shadow);
+      }
+
+      .card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      #hello-message {
+        font-size: 1.4rem;
+        margin-bottom: 1.6rem;
+        color: var(--text-primary);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      button,
+      .secondary {
+        border: none;
+        border-radius: 999px;
+        padding: 0.95rem 1.8rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+      }
+
+      button {
+        color: #050915;
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        box-shadow: 0 15px 30px rgba(125, 210, 255, 0.3);
+      }
+
+      button:hover,
+      button:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 20px 35px rgba(125, 210, 255, 0.4);
+      }
+
+      button:focus-visible,
+      .secondary:focus-visible {
+        outline: 3px solid rgba(255, 255, 255, 0.5);
+        outline-offset: 4px;
+      }
+
+      .secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: var(--text-primary);
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .secondary:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+
+      article {
+        padding: 1.4rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      }
+
+      article h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        color: var(--accent-strong);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 640px) {
+        .actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        button,
+        .secondary {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main" aria-labelledby="page-title">
+      <header>
+        <span class="hello-badge" aria-label="A warm hello badge">hello</span>
+        <h1 id="page-title">Polished greetings for modern teams.</h1>
+        <p>
+          Hello isn't just a word—it's the opening note to every great conversation. Here's a refined experience for
+          sharing it with intention.
+        </p>
+      </header>
+
+      <section class="card" aria-live="polite">
+        <h2>Today's spark</h2>
+        <p id="hello-message">Hello, world. You're looking radiant today.</p>
+        <div class="actions">
+          <button type="button" id="refresh" aria-label="Generate another greeting">Refresh greeting</button>
+          <a class="secondary" href="#reasons">Explore the etiquette</a>
+        </div>
+      </section>
+
+      <section id="reasons" class="grid" aria-label="Reasons to keep saying hello">
+        <article>
+          <h3>Clarity</h3>
+          <p>Lead with a confident tone, a steady pace, and generous space. It keeps the message calm and clear.</p>
+        </article>
+        <article>
+          <h3>Presence</h3>
+          <p>Thoughtful gradients, soft glow, and tactile shadows draw the eye without overwhelming the senses.</p>
+        </article>
+        <article>
+          <h3>Warmth</h3>
+          <p>Balanced typography and contrast ensure the greeting is welcoming and accessible to everyone.</p>
+        </article>
+      </section>
+
+      <footer role="contentinfo">
+        <span>Hand-tuned for Pantheon &mdash; crafted with care.</span>
+        <span aria-label="Updated just now">Updated moments ago</span>
+      </footer>
+    </main>
+
+    <script>
+      const greetings = [
+        "Hello, world. You're looking radiant today.",
+        "Hello, world. May your ideas find the right audience.",
+        "Hello, world. Let's turn quiet sparks into bright stories.",
+        "Hello, world. Your presence shapes the room.",
+        "Hello, world. Every connection starts right here."
+      ];
+
+      const message = document.getElementById("hello-message");
+      const refresh = document.getElementById("refresh");
+
+      refresh.addEventListener("click", () => {
+        const next = Math.floor(Math.random() * greetings.length);
+        message.textContent = greetings[next];
+      });
+    </script>
+  </body>
 </html>
