@@ -5,16 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark light">
     <title>Hello, elevated.</title>
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-      crossorigin
-    >
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="preload"
       as="style"
@@ -34,44 +26,48 @@
         color-scheme: dark;
         --bg: #030915;
         --bg-alt: #050f24;
-        --bg-accent: #111c36;
-        --card: rgba(10, 19, 43, 0.82);
-        --card-solid: #0b1328;
-        --text-primary: #f5f6fb;
-        --text-muted: #b4bed5;
+        --bg-accent: #0b1229;
+        --card: rgba(9, 15, 34, 0.82);
+        --card-solid: #0d142c;
+        --text-primary: #f6f7ff;
+        --text-muted: #b1bedb;
+        --text-soft: rgba(241, 244, 255, 0.8);
         --accent: #7dd2ff;
         --accent-alt: #c084fc;
         --accent-strong: #34d399;
+        --accent-muted: rgba(125, 210, 255, 0.2);
         --focus-ring: #facc15;
-        --shadow: 0 20px 45px rgba(3, 11, 29, 0.6);
+        --surface-line: rgba(255, 255, 255, 0.08);
+        --shadow: 0 25px 50px rgba(2, 8, 23, 0.75);
         --radius: 22px;
         --transition-base: 260ms cubic-bezier(0.4, 0, 0.2, 1);
         --transition-long: 520ms cubic-bezier(0.23, 1, 0.32, 1);
         --blur: 18px;
+        --grid-overlay: rgba(255, 255, 255, 0.04);
       }
 
       :root[data-theme="light"] {
         color-scheme: light;
-        --bg: #f6f7fb;
-        --bg-alt: #e8ecfb;
-        --bg-accent: #ffffff;
-        --card: rgba(255, 255, 255, 0.9);
+        --bg: #f5f7fb;
+        --bg-alt: #e3e8fb;
+        --bg-accent: #fdfdff;
+        --card: rgba(255, 255, 255, 0.92);
         --card-solid: #ffffff;
-        --text-primary: #14192b;
-        --text-muted: #4a5570;
+        --text-primary: #111427;
+        --text-muted: #4b5674;
+        --text-soft: rgba(17, 20, 39, 0.7);
         --accent: #2563eb;
         --accent-alt: #7c3aed;
-        --accent-strong: #0ea360;
-        --focus-ring: #4c1d95;
-        --shadow: 0 25px 45px rgba(18, 35, 68, 0.18);
+        --accent-strong: #059669;
+        --accent-muted: rgba(37, 99, 235, 0.18);
+        --focus-ring: #4338ca;
+        --surface-line: rgba(17, 20, 39, 0.08);
+        --shadow: 0 25px 45px rgba(15, 23, 42, 0.15);
+        --blur: 28px;
       }
 
       * {
         box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
       }
 
       body {
@@ -89,6 +85,24 @@
         position: relative;
         overflow: hidden;
         transition: background var(--transition-long), color var(--transition-base);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 35%),
+          linear-gradient(90deg, transparent 40%, var(--grid-overlay) 41%, transparent 42%);
+        background-size: 100% 100%, 180px 180px;
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body.theme-transition *,
+      body.theme-transition ::before,
+      body.theme-transition ::after {
+        transition-duration: 360ms !important;
       }
 
       body.is-ready main {
@@ -117,7 +131,7 @@
       .glow-one {
         width: 45vmax;
         height: 45vmax;
-        background: radial-gradient(circle, rgba(125, 210, 255, 0.4), transparent 60%);
+        background: radial-gradient(circle, rgba(125, 210, 255, 0.45), transparent 60%);
         top: 5%;
         left: 10%;
       }
@@ -169,7 +183,7 @@
         flex-direction: column;
         gap: 2rem;
         background: linear-gradient(150deg, var(--bg-accent) 0%, transparent 60%);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--surface-line);
         border-radius: var(--radius);
         padding: clamp(1.5rem, 5vw, 3rem);
         box-shadow: var(--shadow);
@@ -199,12 +213,12 @@
         justify-content: space-between;
         gap: 1rem;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: flex-start;
       }
 
       .hello-badge {
         width: fit-content;
-        padding: 0.35rem 0.8rem;
+        padding: 0.35rem 0.85rem;
         border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         text-transform: uppercase;
@@ -213,10 +227,19 @@
         color: var(--accent);
       }
 
+      .preferences {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        align-items: flex-end;
+      }
+
       .toggles {
         display: inline-flex;
         gap: 0.5rem;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       .toggle-button {
@@ -224,14 +247,16 @@
         align-items: center;
         gap: 0.45rem;
         border-radius: 999px;
-        padding: 0.4rem 0.9rem;
+        padding: 0.5rem 1rem;
         border: 1px solid rgba(255, 255, 255, 0.2);
         background: rgba(255, 255, 255, 0.04);
         color: var(--text-primary);
         font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
-        transition: border-color var(--transition-base), background var(--transition-base);
+        transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+        position: relative;
+        overflow: hidden;
       }
 
       .toggle-button svg {
@@ -246,6 +271,21 @@
       .toggle-button:focus-visible {
         outline: 3px solid var(--focus-ring);
         outline-offset: 3px;
+      }
+
+      .toggle-button:hover {
+        border-color: var(--accent);
+      }
+
+      .toggle-label {
+        white-space: nowrap;
+      }
+
+      .control-hint {
+        margin: 0;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-align: right;
       }
 
       h1 {
@@ -263,10 +303,13 @@
         background: var(--card);
         border-radius: var(--radius);
         padding: clamp(1.5rem, 4vw, 2.6rem);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--surface-line);
         box-shadow: var(--shadow);
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
       }
 
       .card::after {
@@ -274,27 +317,58 @@
         position: absolute;
         inset: 1rem;
         border-radius: calc(var(--radius) / 1.5);
-        border: 1px dashed rgba(255, 255, 255, 0.04);
+        border: 1px dashed rgba(255, 255, 255, 0.05);
         pointer-events: none;
       }
 
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
       .card h2 {
-        margin: 0 0 0.75rem;
+        margin: 0;
         font-size: 1.1rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--accent);
       }
 
+      .live-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--text-soft);
+      }
+
+      .live-indicator::before {
+        content: "";
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        background: var(--accent-strong);
+        box-shadow: 0 0 0 0 var(--accent-strong);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+
       .tone-selector {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .filter-inputs {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1rem;
-        margin-bottom: 1.5rem;
-        align-items: end;
       }
 
-      .tone-selector label {
+      .filter-field {
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
@@ -311,7 +385,8 @@
         color: var(--text-primary);
         font-weight: 600;
         font-size: 1rem;
-        transition: border-color var(--transition-base), background var(--transition-base);
+        transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
+        position: relative;
       }
 
       select:focus-visible {
@@ -319,15 +394,64 @@
         outline-offset: 3px;
       }
 
+      .tone-meta {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
       .tone-hint {
         font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .filter-status {
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+      }
+
+      .filter-status[data-state="empty"] {
+        border-color: rgba(248, 113, 113, 0.8);
+        color: #fecaca;
+      }
+
+      .filter-status[data-loading="true"] {
+        color: var(--accent);
+        border-color: var(--accent);
       }
 
       #hello-message {
         font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-        margin-bottom: 1rem;
         color: var(--text-primary);
         transition: color var(--transition-base);
+        position: relative;
+        min-height: 3.2rem;
+      }
+
+      #hello-message[data-loading="true"] {
+        color: var(--text-muted);
+      }
+
+      #hello-message[data-loading="true"]::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 0.85rem;
+        background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, transparent 90%);
+        animation: shimmer 1.6s linear infinite;
+        opacity: 0.5;
+      }
+
+      #hello-message[data-state="empty"] {
+        color: var(--accent-alt);
       }
 
       .message-enter {
@@ -335,19 +459,18 @@
       }
 
       .message-meta {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 0.75rem;
-        margin-bottom: 1.6rem;
       }
 
       .meta-pill {
-        border-radius: 999px;
+        border-radius: 18px;
         border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 0.5rem 1.1rem;
+        padding: 0.75rem 1rem;
         display: inline-flex;
         flex-direction: column;
-        min-width: 120px;
+        gap: 0.35rem;
         background: rgba(255, 255, 255, 0.02);
       }
 
@@ -393,19 +516,20 @@
         outline-offset: 4px;
       }
 
+      .action-button .ripple {
+        position: absolute;
+        pointer-events: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple 0.8s ease-out;
+        opacity: 0.6;
+      }
+
       .primary {
         color: #050915;
         background: linear-gradient(135deg, var(--accent), var(--accent-strong));
         box-shadow: 0 15px 30px rgba(125, 210, 255, 0.3);
-      }
-
-      .primary::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.35);
-        opacity: 0;
-        transition: opacity var(--transition-base);
       }
 
       .primary:hover,
@@ -416,10 +540,6 @@
 
       .primary:active {
         transform: translateY(1px) scale(0.99);
-      }
-
-      .primary:hover::before {
-        opacity: 0.15;
       }
 
       .primary.loading .button-label {
@@ -448,6 +568,17 @@
         color: var(--accent);
       }
 
+      .tertiary {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        color: var(--text-primary);
+      }
+
+      .tertiary:hover {
+        border-color: var(--accent-alt);
+        color: var(--accent-alt);
+      }
+
       #copy[data-state="copied"] {
         border-color: var(--accent-strong);
         color: var(--accent-strong);
@@ -471,12 +602,28 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
         transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+        position: relative;
+        overflow: hidden;
+      }
+
+      article::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 60%);
+        opacity: 0;
+        transition: opacity var(--transition-base);
       }
 
       article:hover {
         transform: translateY(-4px);
         border-color: rgba(255, 255, 255, 0.2);
         box-shadow: inset 0 0 0 1px rgba(125, 210, 255, 0.1), 0 15px 35px rgba(9, 9, 12, 0.4);
+      }
+
+      article:hover::after {
+        opacity: 1;
       }
 
       article h3 {
@@ -494,7 +641,7 @@
         margin-top: 0.5rem;
         font-size: 0.95rem;
         color: var(--text-muted);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid var(--surface-line);
         padding-top: 1rem;
       }
 
@@ -511,6 +658,23 @@
       }
 
       @media (max-width: 640px) {
+        body {
+          padding: 1.5rem;
+        }
+
+        .header-row {
+          flex-direction: column;
+        }
+
+        .preferences {
+          align-items: flex-start;
+          width: 100%;
+        }
+
+        .control-hint {
+          text-align: left;
+        }
+
         .actions {
           flex-direction: column;
           align-items: stretch;
@@ -537,25 +701,27 @@
         }
 
         .message-enter,
-        .glow {
-          animation: none !important;
-        }
-
+        .glow,
+        .live-indicator::before,
+        .action-button .ripple,
+        .card,
         .primary,
         .secondary,
         select,
         main {
+          animation: none !important;
           transition: none !important;
         }
       }
 
       :root[data-motion="calm"] .message-enter,
-      :root[data-motion="calm"] .glow {
+      :root[data-motion="calm"] .glow,
+      :root[data-motion="calm"] .live-indicator::before {
         animation: none;
       }
 
-      :root[data-motion="calm"] .primary,
-      :root[data-motion="calm"] .secondary,
+      :root[data-motion="calm"] .action-button,
+      :root[data-motion="calm"] .toggle-button,
       :root[data-motion="calm"] select,
       :root[data-motion="calm"] main {
         transition-duration: 0ms;
@@ -567,15 +733,6 @@
           --bg-accent: #0b1530;
           --accent: #8df0ff;
           --accent-strong: #4ade80;
-        }
-
-        body {
-          color: var(--text-primary);
-        }
-
-        p,
-        .tone-hint {
-          color: var(--text-primary);
         }
 
         .primary {
@@ -612,12 +769,6 @@
         }
       }
 
-      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-        .card {
-          background: var(--card-solid);
-        }
-      }
-
       @media (forced-colors: active) {
         .ambient {
           display: none;
@@ -633,6 +784,12 @@
           color: CanvasText;
           border: 1px solid CanvasText;
           box-shadow: none;
+        }
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .card {
+          background: var(--card-solid);
         }
       }
 
@@ -664,6 +821,38 @@
           transform: translate3d(0, 0, 0) scale(1);
         }
       }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-30%);
+        }
+        100% {
+          transform: translateX(120%);
+        }
+      }
+
+      @keyframes ripple {
+        from {
+          transform: scale(0);
+          opacity: 0.6;
+        }
+        to {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.8);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -677,22 +866,49 @@
       <header>
         <div class="header-row">
           <span class="hello-badge" aria-hidden="true">hello</span>
-          <div class="toggles" role="group" aria-label="Display preferences">
-            <button type="button" id="theme-toggle" class="toggle-button" aria-pressed="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 4.5a7.5 7.5 0 1 0 7.5 7.5 5.5 5.5 0 0 1-7.5-7.5Z" fill="currentColor" opacity="0.5" />
-                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5" fill="none" />
-              </svg>
-              <span class="toggle-label" id="theme-label">Dark</span>
-            </button>
-            <button type="button" id="motion-toggle" class="toggle-button" aria-pressed="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M4 15c1.8-2 3.4 1.8 5.6-.2s3.5-4.2 5.8-2.2 4 .5 4 .5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                <circle cx="6" cy="7" r="1.2" fill="currentColor" />
-                <circle cx="18" cy="6" r="0.8" fill="currentColor" />
-              </svg>
-              <span class="toggle-label" id="motion-label">Expressive</span>
-            </button>
+          <div class="preferences">
+            <div class="toggles" role="group" aria-label="Display preferences">
+              <button
+                type="button"
+                id="theme-toggle"
+                class="toggle-button"
+                aria-pressed="true"
+                aria-describedby="theme-hint"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M12 3.5c-4.694 0-8.5 3.806-8.5 8.5s3.806 8.5 8.5 8.5 8.5-3.806 8.5-8.5c0-3.06-1.6-5.743-4.014-7.254a0.5 0.5 0 0 0-.74.446 5.72 5.72 0 0 1-6.246 5.71A5.71 5.71 0 0 1 10.35 3.11a0.5 0.5 0 0 0-.482-.61Z"
+                    fill="currentColor"
+                    opacity="0.4"
+                  />
+                  <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+                <span class="toggle-label" id="theme-label">Dark glow</span>
+              </button>
+              <button
+                type="button"
+                id="motion-toggle"
+                class="toggle-button"
+                aria-pressed="true"
+                aria-describedby="motion-hint"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M4 15.5c1.8-2 3.4 1.8 5.6-.2s3.5-4.2 5.8-2.2 4 .5 4 .5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="6" cy="7" r="1.2" fill="currentColor" />
+                  <circle cx="12" cy="5" r="0.9" fill="currentColor" />
+                  <circle cx="18" cy="6" r="0.8" fill="currentColor" />
+                </svg>
+                <span class="toggle-label" id="motion-label">Expressive</span>
+              </button>
+            </div>
+            <p class="control-hint" id="theme-hint">Following your OS palette—toggle to lock it in.</p>
+            <p class="control-hint" id="motion-hint">Expressive motion active. Reduced-motion is honored automatically.</p>
           </div>
         </div>
         <h1 id="page-title">Polished greetings that evolve with your tone.</h1>
@@ -703,19 +919,43 @@
       </header>
 
       <section class="card" role="region" aria-labelledby="spark-title" aria-describedby="message-description">
-        <h2 id="spark-title">Today's spark</h2>
+        <div class="card-header">
+          <h2 id="spark-title">Today's spark</h2>
+          <span class="live-indicator" aria-live="polite">Live</span>
+        </div>
         <p id="message-description" class="sr-only">
-          Personalized greeting lines rotate here. Adjust the mood filter or activate refresh to hear a new line—the updated
-          greeting and its metadata are announced automatically.
+          Personalized greeting lines rotate here. Adjust the mood or focus filters then refresh to generate a new line.
+          Each greeting announces its metadata automatically.
         </p>
         <div class="tone-selector">
-          <label>
-            Choose a mood
-            <select id="mood-filter" name="mood-filter" aria-describedby="tone-hint">
-              <option value="any">Surprise me</option>
-            </select>
-          </label>
-          <p class="tone-hint" id="tone-hint">Prefer calm energy? The motion control above adapts animations instantly.</p>
+          <div class="filter-inputs">
+            <label class="filter-field">
+              Choose a mood
+              <select
+                id="mood-filter"
+                name="mood-filter"
+                aria-describedby="tone-hint filter-status"
+                data-default-label="Surprise me"
+              >
+                <option value="any">Surprise me</option>
+              </select>
+            </label>
+            <label class="filter-field">
+              Focus it
+              <select
+                id="category-filter"
+                name="category-filter"
+                aria-describedby="tone-hint filter-status"
+                data-default-label="All focuses"
+              >
+                <option value="any">All focuses</option>
+              </select>
+            </label>
+          </div>
+          <div class="tone-meta">
+            <p class="tone-hint" id="tone-hint">Mood + focus pairings avoid repeats and echo your motion setting.</p>
+            <span class="filter-status" id="filter-status" role="status" aria-live="polite">15 greetings curated</span>
+          </div>
         </div>
         <p
           id="hello-message"
@@ -734,8 +974,12 @@
             <span class="pill-value">Calm clarity</span>
           </span>
           <span class="meta-pill" id="hello-category">
-            <span class="pill-label">Category</span>
+            <span class="pill-label">Focus</span>
             <span class="pill-value">Momentum</span>
+          </span>
+          <span class="meta-pill" id="hello-intent">
+            <span class="pill-label">Intent</span>
+            <span class="pill-value">Brighten the handoff</span>
           </span>
           <span class="meta-pill meta-pill--time">
             <span class="pill-label">Updated</span>
@@ -749,7 +993,7 @@
           <button type="button" id="copy" class="action-button secondary">
             <span class="button-label" id="copy-label">Copy greeting</span>
           </button>
-          <a class="action-button secondary" href="#reasons" aria-describedby="reasons-title">Explore the etiquette</a>
+          <a class="action-button tertiary" href="#reasons" aria-describedby="reasons-title">Explore the etiquette</a>
         </div>
       </section>
 
@@ -757,15 +1001,18 @@
         <h2 id="reasons-title" class="sr-only">Reasons to keep saying hello</h2>
         <article role="listitem">
           <h3>Clarity</h3>
-          <p>Lead with confident pacing, generous space, and responsive typography so every greeting lands softly.</p>
+          <p>Responsive typography, atmosphere, and contrast tuning keep every greeting legible in motion or calm mode.</p>
         </article>
         <article role="listitem">
           <h3>Presence</h3>
-          <p>Atmospheric gradients and tactile shadows invite focus without overwhelming attention spans.</p>
+          <p>Glassmorphic layers, tactile shadows, and preference-aware gradients add polish without sacrificing speed.</p>
         </article>
         <article role="listitem">
-          <h3>Warmth</h3>
-          <p>Balanced contrast, nuanced color, and motion preferences keep the experience accessible for all.</p>
+          <h3>Micro-interactions</h3>
+          <p>
+            Rippled presses, live filter feedback, and respectful loading shimmer provide modern cues—even when motion is
+            reduced.
+          </p>
         </article>
       </section>
 
@@ -787,31 +1034,43 @@
       const motionToggle = document.getElementById("motion-toggle");
       const motionLabel = document.getElementById("motion-label");
       const moodFilter = document.getElementById("mood-filter");
+      const categoryFilter = document.getElementById("category-filter");
       const moodValue = document.querySelector("#hello-mood .pill-value");
       const categoryValue = document.querySelector("#hello-category .pill-value");
+      const intentValue = document.querySelector("#hello-intent .pill-value");
       const updatedAt = document.getElementById("message-updated");
       const mainContent = document.getElementById("main-content");
       const skipLink = document.querySelector(".skip-link");
+      const themeHint = document.getElementById("theme-hint");
+      const motionHint = document.getElementById("motion-hint");
+      const filterStatus = document.getElementById("filter-status");
       const defaultMessage = (message?.dataset.defaultMessage || message?.textContent || "").trim();
 
       const greetings = [
-        { text: "Hello, world. You're looking radiant today.", mood: "Calm clarity", category: "Momentum" },
-        { text: "Hello, world. Let's turn quiet sparks into bright stories.", mood: "Inspired", category: "Storytelling" },
-        { text: "Hello, world. Every connection starts right here.", mood: "Grounded", category: "Connection" },
-        { text: "Hello, world. May your ideas find the right audience.", mood: "Hopeful", category: "Strategy" },
-        { text: "Hello, world. Your presence shapes the room.", mood: "Confident", category: "Leadership" },
-        { text: "Hello, world. Take a breath—then take the meeting.", mood: "Calm clarity", category: "Focus" },
-        { text: "Hello, world. Curiosity is already working in your favor.", mood: "Curious", category: "Exploration" },
-        { text: "Hello, world. The handoff is ready when you are.", mood: "Prepared", category: "Collaboration" },
-        { text: "Hello, world. We saved you the best seat at the table.", mood: "Welcoming", category: "Hospitality" },
-        { text: "Hello, world. Let data warm up to your delight.", mood: "Playful", category: "Analytics" },
-        { text: "Hello, world. Thanks for showing up with heart.", mood: "Grateful", category: "Recognition" },
-        { text: "Hello, world. Bold moves pair nicely with coffee.", mood: "Bold", category: "Momentum" },
-        { text: "Hello, world. Let's keep possibility on the agenda.", mood: "Optimistic", category: "Planning" },
-        { text: "Hello, world. The brief is crisp and so are you.", mood: "Sharp", category: "Craft" },
-        { text: "Hello, world. Stay gentle with the timeline.", mood: "Gentle", category: "Wellness" },
-        { text: "Hello, world. Feedback loops are feeling friendly today.", mood: "Collaborative", category: "Feedback" },
-        { text: "Hello, world. Consider this your permission to glow.", mood: "Playful", category: "Inspiration" }
+        { text: "Hello, world. You're looking radiant today.", mood: "Calm clarity", category: "Momentum", intent: "Brighten the handoff" },
+        { text: "Hello, world. Let's turn quiet sparks into bright stories.", mood: "Inspired", category: "Storytelling", intent: "Kickoff creative sync" },
+        { text: "Hello, world. Every connection starts right here.", mood: "Grounded", category: "Connection", intent: "Open a workshop" },
+        { text: "Hello, world. May your ideas find the right audience.", mood: "Hopeful", category: "Strategy", intent: "Pre-meeting spark" },
+        { text: "Hello, world. Your presence shapes the room.", mood: "Confident", category: "Leadership", intent: "Executive hello" },
+        { text: "Hello, world. Take a breath—then take the meeting.", mood: "Calm clarity", category: "Focus", intent: "Pre-call reset" },
+        { text: "Hello, world. Curiosity is already working in your favor.", mood: "Curious", category: "Exploration", intent: "Discovery kickoff" },
+        { text: "Hello, world. The handoff is ready when you are.", mood: "Prepared", category: "Collaboration", intent: "Project relay" },
+        { text: "Hello, world. We saved you the best seat at the table.", mood: "Welcoming", category: "Hospitality", intent: "Gathering opener" },
+        { text: "Hello, world. Let data warm up to your delight.", mood: "Playful", category: "Analytics", intent: "Insights share" },
+        { text: "Hello, world. Thanks for showing up with heart.", mood: "Grateful", category: "Recognition", intent: "Appreciation moment" },
+        { text: "Hello, world. Bold moves pair nicely with coffee.", mood: "Bold", category: "Momentum", intent: "Morning kickoff" },
+        { text: "Hello, world. Let's keep possibility on the agenda.", mood: "Optimistic", category: "Planning", intent: "Agenda setup" },
+        { text: "Hello, world. The brief is crisp and so are you.", mood: "Sharp", category: "Craft", intent: "Creative review" },
+        { text: "Hello, world. Stay gentle with the timeline.", mood: "Gentle", category: "Wellness", intent: "Calm reminder" },
+        { text: "Hello, world. Feedback loops are feeling friendly today.", mood: "Collaborative", category: "Feedback", intent: "Retro icebreaker" },
+        { text: "Hello, world. Consider this your permission to glow.", mood: "Playful", category: "Inspiration", intent: "Offsite welcome" },
+        { text: "Hello, world. The sprint is ready for your signature move.", mood: "Motivated", category: "Delivery", intent: "Sprint review" },
+        { text: "Hello, world. The coffee chat energy is immaculate.", mood: "Casual", category: "Community", intent: "Check-in opener" },
+        { text: "Hello, world. We're calibrating to kindness and clarity.", mood: "Reassuring", category: "Support", intent: "Difficult convo" },
+        { text: "Hello, world. Fresh pencils, fresh priorities.", mood: "Productive", category: "Operations", intent: "Planning standup" },
+        { text: "Hello, world. This brainstorm already feels cinematic.", mood: "Electric", category: "Storytelling", intent: "Brainstorm spark" },
+        { text: "Hello, world. Signals are green across the runway.", mood: "Assured", category: "Launch", intent: "Go-live moment" },
+        { text: "Hello, world. Quiet confidence is the loudest flex.", mood: "Poised", category: "Leadership", intent: "Exec briefing" }
       ];
 
       const storage = {
@@ -825,16 +1084,23 @@
         set(key, value) {
           try {
             localStorage.setItem(key, value);
-          } catch (error) {
-            // Intentionally ignore storage errors (private mode, etc.)
-          }
+          } catch (error) {}
         }
       };
 
       const THEME_KEY = "pantheon-hello-theme";
       const MOTION_KEY = "pantheon-hello-motion";
-      const prefersLight = window.matchMedia("(prefers-color-scheme: light)");
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const createMediaFallback = () => ({
+        matches: false,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        addListener: () => {},
+        removeListener: () => {}
+      });
+      const safeMatchMedia = (query) => (typeof window.matchMedia === "function" ? window.matchMedia(query) : createMediaFallback());
+      const prefersLight = safeMatchMedia("(prefers-color-scheme: light)");
+      const prefersReducedMotion = safeMatchMedia("(prefers-reduced-motion: reduce)");
+
       const watchMedia = (mql, callback) => {
         if (!mql || typeof callback !== "function") return;
         if (typeof mql.addEventListener === "function") {
@@ -844,15 +1110,35 @@
         }
       };
 
-      const populateMoodFilter = () => {
-        if (!moodFilter) return;
-        const moods = [...new Set(greetings.map((greeting) => greeting.mood))].sort();
-        moods.forEach((mood) => {
+      const populateSelect = (selectElement, values) => {
+        if (!selectElement) return;
+        const defaultLabel =
+          selectElement.dataset.defaultLabel || selectElement.querySelector("option[value='any']")?.textContent || "Any";
+        const preservedFirst = selectElement.querySelector("option[value='any']");
+        selectElement.textContent = "";
+        if (preservedFirst) {
+          preservedFirst.textContent = defaultLabel;
+          selectElement.appendChild(preservedFirst);
+        } else {
+          const fallbackOption = document.createElement("option");
+          fallbackOption.value = "any";
+          fallbackOption.textContent = defaultLabel;
+          selectElement.appendChild(fallbackOption);
+        }
+        values.forEach((value) => {
           const option = document.createElement("option");
-          option.value = mood;
-          option.textContent = mood;
-          moodFilter.appendChild(option);
+          option.value = value;
+          option.textContent = value;
+          selectElement.appendChild(option);
         });
+        selectElement.value = "any";
+      };
+
+      const populateFilters = () => {
+        const moods = [...new Set(greetings.map((greeting) => greeting.mood))].sort();
+        const categories = [...new Set(greetings.map((greeting) => greeting.category))].sort();
+        populateSelect(moodFilter, moods);
+        populateSelect(categoryFilter, categories);
       };
 
       const setUpdatedTimestamp = () => {
@@ -866,24 +1152,28 @@
       };
 
       const getPool = () => {
-        if (!moodFilter || moodFilter.value === "any") return greetings;
-        return greetings.filter((greeting) => greeting.mood === moodFilter.value);
+        let pool = [...greetings];
+        if (moodFilter && moodFilter.value !== "any") {
+          pool = pool.filter((greeting) => greeting.mood === moodFilter.value);
+        }
+        if (categoryFilter && categoryFilter.value !== "any") {
+          pool = pool.filter((greeting) => greeting.category === categoryFilter.value);
+        }
+        return pool;
       };
 
       let previousGreeting = greetings.find((greeting) => greeting.text === defaultMessage) || greetings[0];
 
       const pickGreeting = () => {
         const pool = getPool();
-        if (pool.length === 0) {
-          return previousGreeting;
-        }
+        if (pool.length === 0) return null;
         if (pool.length === 1) {
           previousGreeting = pool[0];
           return pool[0];
         }
         let next = previousGreeting;
         let attempts = 0;
-        while (next.text === previousGreeting?.text && attempts < 6) {
+        while (next.text === previousGreeting?.text && attempts < 8) {
           next = pool[Math.floor(Math.random() * pool.length)];
           attempts += 1;
         }
@@ -903,24 +1193,76 @@
       const animateMessage = () => {
         if (!message || html.dataset.motion === "calm") return;
         message.classList.remove("message-enter");
-        // Force reflow so animation restarts
         void message.offsetWidth;
         message.classList.add("message-enter");
+      };
+
+      const setFilterStatusLoading = (isLoading) => {
+        if (!filterStatus) return;
+        filterStatus.dataset.loading = isLoading ? "true" : "false";
+        if (isLoading) {
+          filterStatus.textContent = "Refreshing...";
+        } else {
+          updateFilterStatus();
+        }
       };
 
       const setLoading = (isLoading) => {
         if (!refresh) return;
         refresh.classList.toggle("loading", isLoading);
-        refresh.toggleAttribute("aria-busy", isLoading);
         refresh.disabled = isLoading;
+        if (isLoading) {
+          refresh.setAttribute("aria-busy", "true");
+        } else {
+          refresh.removeAttribute("aria-busy");
+        }
+        if (message) {
+          message.dataset.loading = isLoading ? "true" : "false";
+          if (isLoading) {
+            message.setAttribute("aria-busy", "true");
+          } else {
+            message.removeAttribute("aria-busy");
+          }
+        }
+        setFilterStatusLoading(isLoading);
+      };
+
+      const renderEmptyState = () => {
+        if (!message) return;
+        message.dataset.state = "empty";
+        message.dataset.loading = "false";
+        message.removeAttribute("aria-busy");
+        message.textContent = "No greetings match that pairing yet. Try another mood or focus.";
+        if (moodValue) moodValue.textContent = "—";
+        if (categoryValue) categoryValue.textContent = "—";
+        if (intentValue) intentValue.textContent = "Awaiting selection";
+      };
+
+      const updateFilterStatus = () => {
+        if (!filterStatus) return;
+        const poolSize = getPool().length;
+        if (poolSize > 0) {
+          filterStatus.textContent = `${poolSize} curated greeting${poolSize === 1 ? "" : "s"} ready`;
+          filterStatus.dataset.state = "ready";
+        } else {
+          filterStatus.textContent = "No matches yet—adjust the filters.";
+          filterStatus.dataset.state = "empty";
+        }
       };
 
       const updateGreeting = (greeting, { animate = true } = {}) => {
-        if (!greeting || !message) return;
+        if (!greeting || !message) {
+          renderEmptyState();
+          return;
+        }
+        message.dataset.state = "active";
+        message.dataset.loading = "false";
+        message.removeAttribute("aria-busy");
         message.textContent = greeting.text;
         message.dataset.current = greeting.text;
         if (moodValue) moodValue.textContent = greeting.mood;
         if (categoryValue) categoryValue.textContent = greeting.category;
+        if (intentValue) intentValue.textContent = greeting.intent;
         setUpdatedTimestamp();
         if (animate) {
           animateMessage();
@@ -932,28 +1274,75 @@
         setLoading(true);
         window.requestAnimationFrame(() => {
           const greeting = pickGreeting();
+          const delay = html.dataset.motion === "calm" ? 100 : 260;
           setTimeout(() => {
-            updateGreeting(greeting, { animate });
+            if (!greeting) {
+              renderEmptyState();
+            } else {
+              updateGreeting(greeting, { animate });
+            }
             setLoading(false);
-          }, 260);
+          }, delay);
         });
       };
 
-      refresh?.addEventListener("click", () => refreshGreeting());
-      moodFilter?.addEventListener("change", () => refreshGreeting({ animate: false }));
+      const smoothThemeTransition = () => {
+        if (prefersReducedMotion?.matches) return;
+        body.classList.add("theme-transition");
+        window.clearTimeout(smoothThemeTransition.timeoutId);
+        smoothThemeTransition.timeoutId = window.setTimeout(() => {
+          body.classList.remove("theme-transition");
+        }, 600);
+      };
+
+      const updateThemeHint = () => {
+        if (!themeHint) return;
+        const savedTheme = storage.get(THEME_KEY);
+        if (!savedTheme) {
+          themeHint.textContent = "Following your OS palette—toggle to lock it in.";
+          return;
+        }
+        themeHint.textContent = html.dataset.theme === "dark"
+          ? "Dark glow locked. Tap again for daylight."
+          : "Light clarity locked. Tap again for depth.";
+      };
+
+      const updateMotionHint = () => {
+        if (!motionHint) return;
+        const savedMotion = storage.get(MOTION_KEY);
+        const systemPrefersCalm = prefersReducedMotion?.matches ?? false;
+        if (!savedMotion) {
+          motionHint.textContent = systemPrefersCalm
+            ? "Calm motion follows your OS setting automatically."
+            : "Expressive motion active. Toggle to soften it.";
+          return;
+        }
+        motionHint.textContent = html.dataset.motion === "expressive"
+          ? "Expressive motion locked. Toggle to go calm."
+          : "Calm motion locked. Toggle to bring back flourishes.";
+      };
 
       const applyTheme = (theme, persist = false) => {
         html.dataset.theme = theme;
         themeToggle?.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-        if (themeLabel) themeLabel.textContent = theme === "dark" ? "Dark" : "Light";
-        if (persist) storage.set(THEME_KEY, theme);
+        themeToggle?.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+        if (themeLabel) themeLabel.textContent = theme === "dark" ? "Dark glow" : "Light clarity";
+        updateThemeHint();
+        if (persist) {
+          storage.set(THEME_KEY, theme);
+        }
+        smoothThemeTransition();
       };
 
       const applyMotion = (mode, persist = false) => {
         html.dataset.motion = mode;
         motionToggle?.setAttribute("aria-pressed", mode === "expressive" ? "true" : "false");
+        motionToggle?.setAttribute("aria-label", mode === "expressive" ? "Switch to calm motion" : "Switch to expressive motion");
         if (motionLabel) motionLabel.textContent = mode === "expressive" ? "Expressive" : "Calm";
-        if (persist) storage.set(MOTION_KEY, mode);
+        if (persist) {
+          storage.set(MOTION_KEY, mode);
+        }
+        updateMotionHint();
       };
 
       const initTheme = () => {
@@ -971,9 +1360,9 @@
 
       const initMotion = () => {
         const savedMotion = storage.get(MOTION_KEY);
-        const startingMotion = savedMotion || (prefersReducedMotion.matches ? "calm" : "expressive");
+        const startingMotion = savedMotion || ((prefersReducedMotion?.matches ?? false) ? "calm" : "expressive");
         applyMotion(startingMotion);
-        if (!savedMotion) {
+        if (!savedMotion && prefersReducedMotion?.addEventListener) {
           watchMedia(prefersReducedMotion, (event) => {
             if (!storage.get(MOTION_KEY)) {
               applyMotion(event.matches ? "calm" : "expressive");
@@ -991,6 +1380,14 @@
         const nextMotion = html.dataset.motion === "expressive" ? "calm" : "expressive";
         applyMotion(nextMotion, true);
       });
+
+      const handleFilterChange = () => {
+        updateFilterStatus();
+        refreshGreeting({ animate: html.dataset.motion !== "calm" });
+      };
+
+      moodFilter?.addEventListener("change", handleFilterChange);
+      categoryFilter?.addEventListener("change", handleFilterChange);
 
       skipLink?.addEventListener("click", (event) => {
         if (!mainContent) return;
@@ -1046,9 +1443,29 @@
         }, 1800);
       });
 
-      populateMoodFilter();
+      const attachRipple = () => {
+        const targets = document.querySelectorAll(".action-button, .toggle-button");
+        targets.forEach((target) => {
+          target.addEventListener("click", (event) => {
+            if (html.dataset.motion === "calm" || (prefersReducedMotion?.matches ?? false)) return;
+            const rect = target.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const ripple = document.createElement("span");
+            ripple.className = "ripple";
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+            target.appendChild(ripple);
+            ripple.addEventListener("animationend", () => ripple.remove());
+          });
+        });
+      };
+
+      populateFilters();
+      updateFilterStatus();
       initTheme();
       initMotion();
+      attachRipple();
       updateGreeting(previousGreeting, { animate: false });
       body.classList.add("is-ready");
       setUpdatedTimestamp();
