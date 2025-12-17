@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-motion="expressive">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,16 +32,37 @@
       :root {
         color-scheme: dark;
         --bg: #030915;
+        --bg-alt: #050f24;
         --bg-accent: #111c36;
-        --card: rgba(10, 19, 43, 0.85);
+        --card: rgba(10, 19, 43, 0.82);
         --card-solid: #0b1328;
         --text-primary: #f5f6fb;
         --text-muted: #b4bed5;
         --accent: #7dd2ff;
+        --accent-alt: #c084fc;
         --accent-strong: #34d399;
         --focus-ring: #facc15;
         --shadow: 0 20px 45px rgba(3, 11, 29, 0.6);
         --radius: 22px;
+        --transition-base: 260ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-long: 520ms cubic-bezier(0.23, 1, 0.32, 1);
+        --blur: 18px;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f6f7fb;
+        --bg-alt: #e8ecfb;
+        --bg-accent: #ffffff;
+        --card: rgba(255, 255, 255, 0.9);
+        --card-solid: #ffffff;
+        --text-primary: #14192b;
+        --text-muted: #4a5570;
+        --accent: #2563eb;
+        --accent-alt: #7c3aed;
+        --accent-strong: #0ea360;
+        --focus-ring: #4c1d95;
+        --shadow: 0 25px 45px rgba(18, 35, 68, 0.18);
       }
 
       * {
@@ -52,13 +73,65 @@
         margin: 0;
         min-height: 100vh;
         padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
+        font-family: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at 20% 20%, var(--bg-alt), var(--bg) 65%);
+        color: var(--text-primary);
+        line-height: 1.6;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: radial-gradient(circle at top, #10264d, #030915 65%);
-        color: var(--text-primary);
-        line-height: 1.6;
+        position: relative;
+        overflow: hidden;
+        transition: background var(--transition-long), color var(--transition-base);
+      }
+
+      body.is-ready main {
+        opacity: 1;
+        transform: none;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: -15% -25% auto -25%;
+        height: 160vh;
+        pointer-events: none;
+        z-index: 0;
+        filter: blur(0.5px);
+        opacity: 0.7;
+      }
+
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+        opacity: 0.35;
+        animation: drift 18s ease-in-out infinite;
+      }
+
+      .glow-one {
+        width: 45vmax;
+        height: 45vmax;
+        background: radial-gradient(circle, rgba(125, 210, 255, 0.4), transparent 60%);
+        top: 5%;
+        left: 10%;
+      }
+
+      .glow-two {
+        width: 35vmax;
+        height: 35vmax;
+        background: radial-gradient(circle, rgba(192, 132, 252, 0.35), transparent 65%);
+        bottom: 10%;
+        right: 5%;
+        animation-delay: -6s;
+      }
+
+      .glow-three {
+        width: 28vmax;
+        height: 28vmax;
+        background: radial-gradient(circle, rgba(52, 211, 153, 0.3), transparent 70%);
+        top: 30%;
+        right: 25%;
+        animation-delay: -12s;
       }
 
       .skip-link {
@@ -72,8 +145,8 @@
         border-radius: 999px;
         text-decoration: none;
         font-weight: 600;
-        transition: transform 180ms ease;
-        z-index: 99;
+        transition: transform var(--transition-base);
+        z-index: 2;
         box-shadow: var(--shadow);
       }
 
@@ -86,12 +159,19 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        background: linear-gradient(145deg, var(--bg-accent), transparent 70%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(150deg, var(--bg-accent) 0%, transparent 60%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: var(--radius);
         padding: clamp(1.5rem, 5vw, 3rem);
         box-shadow: var(--shadow);
         outline: none;
+        position: relative;
+        z-index: 1;
+        backdrop-filter: blur(var(--blur));
+        -webkit-backdrop-filter: blur(var(--blur));
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity var(--transition-long), transform var(--transition-long);
       }
 
       main:focus-visible {
@@ -100,24 +180,69 @@
       }
 
       header {
-        display: grid;
-        gap: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
       }
 
       .hello-badge {
         width: fit-content;
         padding: 0.35rem 0.8rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         text-transform: uppercase;
         letter-spacing: 0.25em;
         font-size: 0.8rem;
         color: var(--accent);
       }
 
+      .toggles {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .toggle-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        border-radius: 999px;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: border-color var(--transition-base), background var(--transition-base);
+      }
+
+      .toggle-button svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+
+      .toggle-button[aria-pressed="false"] {
+        opacity: 0.75;
+      }
+
+      .toggle-button:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
       h1 {
-        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-size: clamp(2.4rem, 5vw, 3.75rem);
         margin: 0;
+        line-height: 1.15;
       }
 
       p {
@@ -128,74 +253,200 @@
       .card {
         background: var(--card);
         border-radius: var(--radius);
-        padding: clamp(1.5rem, 4vw, 2.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        padding: clamp(1.5rem, 4vw, 2.6rem);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 1rem;
+        border-radius: calc(var(--radius) / 1.5);
+        border: 1px dashed rgba(255, 255, 255, 0.04);
+        pointer-events: none;
       }
 
       .card h2 {
-        margin: 0 0 0.5rem;
-        font-size: 1.2rem;
+        margin: 0 0 0.75rem;
+        font-size: 1.1rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--accent);
       }
 
+      .tone-selector {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        align-items: end;
+      }
+
+      .tone-selector label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      select {
+        appearance: none;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 0.85rem 1.1rem;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 1rem;
+        transition: border-color var(--transition-base), background var(--transition-base);
+      }
+
+      select:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      .tone-hint {
+        font-size: 0.85rem;
+      }
+
       #hello-message {
-        font-size: 1.4rem;
+        font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+        transition: color var(--transition-base);
+      }
+
+      .message-enter {
+        animation: floatIn 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .message-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
         margin-bottom: 1.6rem;
+      }
+
+      .meta-pill {
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.5rem 1.1rem;
+        display: inline-flex;
+        flex-direction: column;
+        min-width: 120px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .pill-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.65;
+      }
+
+      .pill-value {
+        font-size: 0.95rem;
+        font-weight: 600;
         color: var(--text-primary);
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.8rem;
         align-items: center;
       }
 
-      button,
-      .secondary {
+      .action-button {
         border: none;
         border-radius: 999px;
         padding: 0.95rem 1.8rem;
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+        transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        position: relative;
+        overflow: hidden;
       }
 
-      button {
+      .action-button:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 4px;
+      }
+
+      .primary {
         color: #050915;
         background: linear-gradient(135deg, var(--accent), var(--accent-strong));
         box-shadow: 0 15px 30px rgba(125, 210, 255, 0.3);
       }
 
-      button:hover,
-      button:focus-visible {
-        transform: translateY(-2px) scale(1.01);
-        box-shadow: 0 20px 35px rgba(125, 210, 255, 0.4);
+      .primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.35);
+        opacity: 0;
+        transition: opacity var(--transition-base);
       }
 
-      button:focus-visible,
-      .secondary:focus-visible {
-        outline: 3px solid var(--focus-ring);
-        outline-offset: 4px;
+      .primary:hover,
+      .primary:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 25px 40px rgba(125, 210, 255, 0.45);
+      }
+
+      .primary:active {
+        transform: translateY(1px) scale(0.99);
+      }
+
+      .primary:hover::before {
+        opacity: 0.15;
+      }
+
+      .primary.loading .button-label {
+        opacity: 0;
+      }
+
+      .primary.loading::after {
+        content: "";
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid rgba(5, 9, 21, 0.5);
+        border-top-color: rgba(5, 9, 21, 0.1);
+        border-radius: 999px;
+        animation: spin 1s linear infinite;
       }
 
       .secondary {
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.25);
         color: var(--text-primary);
-        text-decoration: none;
-        text-align: center;
       }
 
       .secondary:hover {
         border-color: var(--accent);
         color: var(--accent);
+      }
+
+      #copy[data-state="copied"] {
+        border-color: var(--accent-strong);
+        color: var(--accent-strong);
+      }
+
+      #copy[data-state="error"] {
+        border-color: #f87171;
+        color: #f87171;
       }
 
       .grid {
@@ -207,9 +458,16 @@
       article {
         padding: 1.4rem;
         border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+      }
+
+      article:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0 0 1px rgba(125, 210, 255, 0.1), 0 15px 35px rgba(9, 9, 12, 0.4);
       }
 
       article h3 {
@@ -227,6 +485,8 @@
         margin-top: 0.5rem;
         font-size: 0.95rem;
         color: var(--text-muted);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 1rem;
       }
 
       .sr-only {
@@ -247,10 +507,8 @@
           align-items: stretch;
         }
 
-        button,
-        .secondary {
+        .action-button {
           width: 100%;
-          text-align: center;
         }
 
         footer {
@@ -260,15 +518,34 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        * {
-          transition: none !important;
+        :root {
+          --transition-base: 0ms;
+          --transition-long: 0ms;
         }
 
-        button,
-        .secondary {
-          transform: none !important;
-          box-shadow: none;
+        .message-enter,
+        .glow {
+          animation: none !important;
         }
+
+        .primary,
+        .secondary,
+        select,
+        main {
+          transition: none !important;
+        }
+      }
+
+      :root[data-motion="calm"] .message-enter,
+      :root[data-motion="calm"] .glow {
+        animation: none;
+      }
+
+      :root[data-motion="calm"] .primary,
+      :root[data-motion="calm"] .secondary,
+      :root[data-motion="calm"] select,
+      :root[data-motion="calm"] main {
+        transition-duration: 0ms;
       }
 
       @media (prefers-contrast: more) {
@@ -279,12 +556,8 @@
           --accent-strong: #4ade80;
         }
 
-        button {
-          box-shadow: none;
-        }
-
-        article {
-          background: rgba(255, 255, 255, 0.08);
+        .card::after {
+          border-color: rgba(255, 255, 255, 0.15);
         }
       }
 
@@ -293,22 +566,84 @@
           background: var(--card-solid);
         }
       }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(6%, 4%, 0) scale(1.08);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+      }
     </style>
   </head>
   <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="glow glow-one"></span>
+      <span class="glow glow-two"></span>
+      <span class="glow glow-three"></span>
+    </div>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <main id="main-content" aria-labelledby="page-title" tabindex="-1">
       <header>
-        <span class="hello-badge" aria-hidden="true">hello</span>
-        <h1 id="page-title">Polished greetings for modern teams.</h1>
+        <div class="header-row">
+          <span class="hello-badge" aria-hidden="true">hello</span>
+          <div class="toggles" role="group" aria-label="Display preferences">
+            <button type="button" id="theme-toggle" class="toggle-button" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 4.5a7.5 7.5 0 1 0 7.5 7.5 5.5 5.5 0 0 1-7.5-7.5Z" fill="currentColor" opacity="0.5" />
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5" fill="none" />
+              </svg>
+              <span class="toggle-label" id="theme-label">Dark</span>
+            </button>
+            <button type="button" id="motion-toggle" class="toggle-button" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 15c1.8-2 3.4 1.8 5.6-.2s3.5-4.2 5.8-2.2 4 .5 4 .5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                <circle cx="6" cy="7" r="1.2" fill="currentColor" />
+                <circle cx="18" cy="6" r="0.8" fill="currentColor" />
+              </svg>
+              <span class="toggle-label" id="motion-label">Expressive</span>
+            </button>
+          </div>
+        </div>
+        <h1 id="page-title">Polished greetings that evolve with your tone.</h1>
         <p>
-          Hello isn't just a word—it's the opening note to every great conversation. Here's a refined experience for
-          sharing it with intention.
+          Hello isn't just a word—it's the opening note to every great conversation. Tune the vibe, honor preferences,
+          and send a message that feels intentional every single time.
         </p>
       </header>
 
       <section class="card" aria-labelledby="spark-title">
         <h2 id="spark-title">Today's spark</h2>
+        <div class="tone-selector">
+          <label>
+            Choose a mood
+            <select id="mood-filter" name="mood-filter">
+              <option value="any">Surprise me</option>
+            </select>
+          </label>
+          <p class="tone-hint">Prefer calm energy? The motion control above adapts animations instantly.</p>
+        </div>
         <p
           id="hello-message"
           role="status"
@@ -319,15 +654,28 @@
         >
           Hello, world. You're looking radiant today.
         </p>
+        <div class="message-meta" aria-live="polite" aria-atomic="true">
+          <span class="meta-pill" id="hello-mood">
+            <span class="pill-label">Mood</span>
+            <span class="pill-value">Calm clarity</span>
+          </span>
+          <span class="meta-pill" id="hello-category">
+            <span class="pill-label">Category</span>
+            <span class="pill-value">Momentum</span>
+          </span>
+          <span class="meta-pill meta-pill--time">
+            <span class="pill-label">Updated</span>
+            <time class="pill-value" id="message-updated" datetime="">Just now</time>
+          </span>
+        </div>
         <div class="actions" role="group" aria-label="Greeting actions">
-          <button
-            type="button"
-            id="refresh"
-            aria-controls="hello-message"
-          >
-            Refresh greeting
+          <button type="button" id="refresh" class="action-button primary">
+            <span class="button-label">Refresh greeting</span>
           </button>
-          <a class="secondary" href="#reasons">Explore the etiquette</a>
+          <button type="button" id="copy" class="action-button secondary">
+            <span class="button-label" id="copy-label">Copy greeting</span>
+          </button>
+          <a class="action-button secondary" href="#reasons">Explore the etiquette</a>
         </div>
       </section>
 
@@ -335,15 +683,15 @@
         <h2 id="reasons-title" class="sr-only">Reasons to keep saying hello</h2>
         <article>
           <h3>Clarity</h3>
-          <p>Lead with a confident tone, a steady pace, and generous space. It keeps the message calm and clear.</p>
+          <p>Lead with confident pacing, generous space, and responsive typography so every greeting lands softly.</p>
         </article>
         <article>
           <h3>Presence</h3>
-          <p>Thoughtful gradients, soft glow, and tactile shadows draw the eye without overwhelming the senses.</p>
+          <p>Atmospheric gradients and tactile shadows invite focus without overwhelming attention spans.</p>
         </article>
         <article>
           <h3>Warmth</h3>
-          <p>Balanced typography and contrast ensure the greeting is welcoming and accessible to everyone.</p>
+          <p>Balanced contrast, nuanced color, and motion preferences keep the experience accessible for all.</p>
         </article>
       </section>
 
@@ -354,52 +702,266 @@
     </main>
 
     <script>
-      const greetings = [
-        "Hello, world. You're looking radiant today.",
-        "Hello, world. May your ideas find the right audience.",
-        "Hello, world. Let's turn quiet sparks into bright stories.",
-        "Hello, world. Your presence shapes the room.",
-        "Hello, world. Every connection starts right here."
-      ];
-
+      const html = document.documentElement;
+      const body = document.body;
       const message = document.getElementById("hello-message");
       const refresh = document.getElementById("refresh");
+      const copyButton = document.getElementById("copy");
+      const copyLabel = document.getElementById("copy-label");
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeLabel = document.getElementById("theme-label");
+      const motionToggle = document.getElementById("motion-toggle");
+      const motionLabel = document.getElementById("motion-label");
+      const moodFilter = document.getElementById("mood-filter");
+      const moodValue = document.querySelector("#hello-mood .pill-value");
+      const categoryValue = document.querySelector("#hello-category .pill-value");
+      const updatedAt = document.getElementById("message-updated");
+      const defaultMessage = (message?.dataset.defaultMessage || message?.textContent || "").trim();
 
-      const defaultMessage = (message.dataset.defaultMessage || message.textContent).trim();
-      let previousIndex = greetings.indexOf(defaultMessage);
+      const greetings = [
+        { text: "Hello, world. You're looking radiant today.", mood: "Calm clarity", category: "Momentum" },
+        { text: "Hello, world. Let's turn quiet sparks into bright stories.", mood: "Inspired", category: "Storytelling" },
+        { text: "Hello, world. Every connection starts right here.", mood: "Grounded", category: "Connection" },
+        { text: "Hello, world. May your ideas find the right audience.", mood: "Hopeful", category: "Strategy" },
+        { text: "Hello, world. Your presence shapes the room.", mood: "Confident", category: "Leadership" },
+        { text: "Hello, world. Take a breath—then take the meeting.", mood: "Calm clarity", category: "Focus" },
+        { text: "Hello, world. Curiosity is already working in your favor.", mood: "Curious", category: "Exploration" },
+        { text: "Hello, world. The handoff is ready when you are.", mood: "Prepared", category: "Collaboration" },
+        { text: "Hello, world. We saved you the best seat at the table.", mood: "Welcoming", category: "Hospitality" },
+        { text: "Hello, world. Let data warm up to your delight.", mood: "Playful", category: "Analytics" },
+        { text: "Hello, world. Thanks for showing up with heart.", mood: "Grateful", category: "Recognition" },
+        { text: "Hello, world. Bold moves pair nicely with coffee.", mood: "Bold", category: "Momentum" },
+        { text: "Hello, world. Let's keep possibility on the agenda.", mood: "Optimistic", category: "Planning" },
+        { text: "Hello, world. The brief is crisp and so are you.", mood: "Sharp", category: "Craft" },
+        { text: "Hello, world. Stay gentle with the timeline.", mood: "Gentle", category: "Wellness" },
+        { text: "Hello, world. Feedback loops are feeling friendly today.", mood: "Collaborative", category: "Feedback" },
+        { text: "Hello, world. Consider this your permission to glow.", mood: "Playful", category: "Inspiration" }
+      ];
+
+      const storage = {
+        get(key) {
+          try {
+            return localStorage.getItem(key);
+          } catch (error) {
+            return null;
+          }
+        },
+        set(key, value) {
+          try {
+            localStorage.setItem(key, value);
+          } catch (error) {
+            // Intentionally ignore storage errors (private mode, etc.)
+          }
+        }
+      };
+
+      const THEME_KEY = "pantheon-hello-theme";
+      const MOTION_KEY = "pantheon-hello-motion";
+      const prefersLight = window.matchMedia("(prefers-color-scheme: light)");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const watchMedia = (mql, callback) => {
+        if (!mql || typeof callback !== "function") return;
+        if (typeof mql.addEventListener === "function") {
+          mql.addEventListener("change", callback);
+        } else if (typeof mql.addListener === "function") {
+          mql.addListener(callback);
+        }
+      };
+
+      const populateMoodFilter = () => {
+        if (!moodFilter) return;
+        const moods = [...new Set(greetings.map((greeting) => greeting.mood))].sort();
+        moods.forEach((mood) => {
+          const option = document.createElement("option");
+          option.value = mood;
+          option.textContent = mood;
+          moodFilter.appendChild(option);
+        });
+      };
+
+      const setUpdatedTimestamp = () => {
+        if (!updatedAt) return;
+        const now = new Date();
+        updatedAt.textContent = new Intl.DateTimeFormat(undefined, {
+          hour: "numeric",
+          minute: "2-digit"
+        }).format(now);
+        updatedAt.dateTime = now.toISOString();
+      };
+
+      const getPool = () => {
+        if (!moodFilter || moodFilter.value === "any") return greetings;
+        return greetings.filter((greeting) => greeting.mood === moodFilter.value);
+      };
+
+      let previousGreeting = greetings.find((greeting) => greeting.text === defaultMessage) || greetings[0];
+
+      const pickGreeting = () => {
+        const pool = getPool();
+        if (pool.length === 0) {
+          return previousGreeting;
+        }
+        if (pool.length === 1) {
+          previousGreeting = pool[0];
+          return pool[0];
+        }
+        let next = previousGreeting;
+        let attempts = 0;
+        while (next.text === previousGreeting?.text && attempts < 6) {
+          next = pool[Math.floor(Math.random() * pool.length)];
+          attempts += 1;
+        }
+        previousGreeting = next;
+        return next;
+      };
 
       const focusMessage = () => {
         if (document.activeElement !== refresh) return;
         try {
-          message.focus({ preventScroll: true });
+          message?.focus({ preventScroll: true });
         } catch (error) {
-          message.focus();
+          message?.focus();
         }
       };
 
-      const pickGreeting = () => {
-        if (greetings.length === 1) {
-          previousIndex = 0;
-          return greetings[0];
-        }
-
-        let nextIndex = previousIndex;
-        while (nextIndex === previousIndex) {
-          nextIndex = Math.floor(Math.random() * greetings.length);
-        }
-
-        previousIndex = nextIndex;
-        return greetings[nextIndex];
+      const animateMessage = () => {
+        if (!message || html.dataset.motion === "calm") return;
+        message.classList.remove("message-enter");
+        // Force reflow so animation restarts
+        void message.offsetWidth;
+        message.classList.add("message-enter");
       };
 
-      refresh.addEventListener("click", () => {
-        const nextGreeting = pickGreeting();
-        message.textContent = nextGreeting;
-        message.setAttribute("data-current", nextGreeting);
+      const setLoading = (isLoading) => {
+        if (!refresh) return;
+        refresh.classList.toggle("loading", isLoading);
+        refresh.toggleAttribute("aria-busy", isLoading);
+        refresh.disabled = isLoading;
+      };
+
+      const updateGreeting = (greeting, { animate = true } = {}) => {
+        if (!greeting || !message) return;
+        message.textContent = greeting.text;
+        message.dataset.current = greeting.text;
+        if (moodValue) moodValue.textContent = greeting.mood;
+        if (categoryValue) categoryValue.textContent = greeting.category;
+        setUpdatedTimestamp();
+        if (animate) {
+          animateMessage();
+        }
         focusMessage();
+      };
+
+      const refreshGreeting = ({ animate = true } = {}) => {
+        setLoading(true);
+        window.requestAnimationFrame(() => {
+          const greeting = pickGreeting();
+          setTimeout(() => {
+            updateGreeting(greeting, { animate });
+            setLoading(false);
+          }, 260);
+        });
+      };
+
+      refresh?.addEventListener("click", () => refreshGreeting());
+      moodFilter?.addEventListener("change", () => refreshGreeting({ animate: false }));
+
+      const applyTheme = (theme, persist = false) => {
+        html.dataset.theme = theme;
+        themeToggle?.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+        if (themeLabel) themeLabel.textContent = theme === "dark" ? "Dark" : "Light";
+        if (persist) storage.set(THEME_KEY, theme);
+      };
+
+      const applyMotion = (mode, persist = false) => {
+        html.dataset.motion = mode;
+        motionToggle?.setAttribute("aria-pressed", mode === "expressive" ? "true" : "false");
+        if (motionLabel) motionLabel.textContent = mode === "expressive" ? "Expressive" : "Calm";
+        if (persist) storage.set(MOTION_KEY, mode);
+      };
+
+      const initTheme = () => {
+        const savedTheme = storage.get(THEME_KEY);
+        const startingTheme = savedTheme || (prefersLight.matches ? "light" : "dark");
+        applyTheme(startingTheme);
+        if (!savedTheme) {
+          watchMedia(prefersLight, (event) => {
+            if (!storage.get(THEME_KEY)) {
+              applyTheme(event.matches ? "light" : "dark");
+            }
+          });
+        }
+      };
+
+      const initMotion = () => {
+        const savedMotion = storage.get(MOTION_KEY);
+        const startingMotion = savedMotion || (prefersReducedMotion.matches ? "calm" : "expressive");
+        applyMotion(startingMotion);
+        if (!savedMotion) {
+          watchMedia(prefersReducedMotion, (event) => {
+            if (!storage.get(MOTION_KEY)) {
+              applyMotion(event.matches ? "calm" : "expressive");
+            }
+          });
+        }
+      };
+
+      themeToggle?.addEventListener("click", () => {
+        const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme, true);
       });
 
-      message.setAttribute("data-current", defaultMessage);
+      motionToggle?.addEventListener("click", () => {
+        const nextMotion = html.dataset.motion === "expressive" ? "calm" : "expressive";
+        applyMotion(nextMotion, true);
+      });
+
+      const fallbackCopy = (text) => {
+        const hiddenTextarea = document.createElement("textarea");
+        hiddenTextarea.value = text;
+        hiddenTextarea.setAttribute("readonly", "true");
+        hiddenTextarea.style.position = "absolute";
+        hiddenTextarea.style.left = "-9999px";
+        document.body.appendChild(hiddenTextarea);
+        hiddenTextarea.select();
+        try {
+          document.execCommand("copy");
+          document.body.removeChild(hiddenTextarea);
+          return true;
+        } catch (error) {
+          document.body.removeChild(hiddenTextarea);
+          return false;
+        }
+      };
+
+      const setCopyState = (state, label) => {
+        if (!copyButton || !copyLabel) return;
+        copyButton.dataset.state = state;
+        copyLabel.textContent = label;
+      };
+
+      copyButton?.addEventListener("click", async () => {
+        const text = message?.textContent?.trim();
+        if (!text) return;
+        const success = navigator.clipboard
+          ? await navigator.clipboard.writeText(text).then(() => true).catch(() => false)
+          : fallbackCopy(text);
+        if (success) {
+          setCopyState("copied", "Copied!");
+        } else {
+          setCopyState("error", "Copy unavailable");
+        }
+        setTimeout(() => {
+          setCopyState("", "Copy greeting");
+        }, 1800);
+      });
+
+      populateMoodFilter();
+      initTheme();
+      initMotion();
+      updateGreeting(previousGreeting, { animate: false });
+      body.classList.add("is-ready");
+      setUpdatedTimestamp();
     </script>
   </body>
 </html>

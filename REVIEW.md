@@ -11,6 +11,13 @@
 - Strengthened live announcement fidelity by moving polite updates to the greeting paragraph, preventing duplicate selections, and returning focus to the message only when invoked from the keyboard.
 - Normalized focus rings via a high-contrast token and ensured components remain perceivable under `prefers-reduced-motion` and `prefers-contrast` media queries.
 
+## Modern UX Enhancements
+- Introduced dual preference toggles: a theme switch (system-aware with persistence) and a motion control that honors `prefers-reduced-motion` yet lets users opt back into expressive animations.
+- Expanded the greeting library to 17 mood-aware entries, surfaced mood/category pills, and added a \"Surprise me\" tone selector so randomization stays purposeful.
+- Layered in micro-interactions such as animated aurora backdrops, floating message transitions, hover-elevating cards, loading spinners, and resilient clipboard feedback.
+- Added a respectful copy flow (async clipboard with fallback plus inline state messaging) along with timestamped status text to reassure users when content updates.
+- Implemented a gentle page-ready reveal and ensured every animation path is disabled automatically whenever users request calmer motion.
+
 ## Performance Considerations
 - Preloaded the Google Fonts stylesheet and swapped it in asynchronously to keep first paint snappy while retaining the Space Grotesk look.
 - Added a `backdrop-filter` fallback to avoid costly transparency processing on browsers that do not support it, reducing unnecessary GPU work on low-end devices.
