@@ -328,6 +328,52 @@
         gap: 1rem;
       }
 
+      .session-card {
+        gap: 1.25rem;
+      }
+
+      .session-card .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .session-card h2 {
+        color: var(--text-primary);
+        font-size: 1.4rem;
+        letter-spacing: 0.04em;
+        text-transform: none;
+      }
+
+      .session-description {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.95rem;
+      }
+
+      .session-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .session-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .session-meta span {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
       .card h2 {
         margin: 0;
         font-size: 1.1rem;
@@ -526,6 +572,156 @@
         opacity: 0.6;
       }
 
+      .ghost-button {
+        border-radius: 999px;
+        border: 1px dashed rgba(255, 255, 255, 0.25);
+        background: transparent;
+        color: var(--text-muted);
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 0.45rem 1rem;
+        cursor: pointer;
+        transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+      }
+
+      .ghost-button:hover:not(:disabled) {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .ghost-button:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      .ghost-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .history-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .history-item {
+        border: 1px solid var(--surface-line);
+        border-radius: calc(var(--radius) - 8px);
+        padding: 1rem 1.2rem;
+        background: rgba(255, 255, 255, 0.02);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .history-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(circle at top left, rgba(125, 210, 255, 0.18), transparent 60%);
+        opacity: 0;
+        transition: opacity var(--transition-base);
+        pointer-events: none;
+      }
+
+      .history-item:hover::after,
+      .history-item:focus-within::after {
+        opacity: 1;
+      }
+
+      .history-item--empty {
+        grid-template-columns: 1fr;
+      }
+
+      .history-body {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .history-item--empty .history-body {
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .history-empty-hint {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .history-meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.4rem 1rem;
+        margin: 0;
+      }
+
+      .history-meta div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      .history-meta dt {
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .history-meta dd {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .history-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .history-copy {
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: transparent;
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+        cursor: pointer;
+        transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base), transform var(--transition-base);
+      }
+
+      .history-copy:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .history-copy:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      .history-copy[data-state="copied"] {
+        border-color: var(--accent-strong);
+        color: var(--accent-strong);
+      }
+
+      .history-copy[data-state="error"] {
+        border-color: rgba(248, 113, 113, 0.85);
+        color: #fecaca;
+      }
+
       .primary {
         color: #050915;
         background: linear-gradient(135deg, var(--accent), var(--accent-strong));
@@ -682,6 +878,28 @@
 
         .action-button {
           width: 100%;
+        }
+
+        .session-card .card-header {
+          align-items: stretch;
+        }
+
+        .session-controls {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .ghost-button {
+          width: 100%;
+          text-align: center;
+        }
+
+        .history-item {
+          grid-template-columns: 1fr;
+        }
+
+        .history-actions {
+          justify-content: flex-start;
         }
 
         footer {
@@ -997,6 +1215,29 @@
         </div>
       </section>
 
+      <section class="card session-card" aria-labelledby="session-title" aria-describedby="session-description">
+        <div class="card-header">
+          <div>
+            <h2 id="session-title">Session log</h2>
+            <p id="session-description" class="session-description">
+              Capture the lines worth reusing. Aurora keeps the last four refreshes in this browser only.
+            </p>
+          </div>
+          <div class="session-controls">
+            <p class="session-meta" role="status" aria-live="polite">
+              Saved: <span id="history-count">No greetings yet</span>
+            </p>
+            <button type="button" id="clear-history" class="ghost-button" disabled>Clear log</button>
+          </div>
+        </div>
+        <ol id="history-list" class="history-list" aria-live="polite" aria-atomic="false">
+          <li class="history-item history-item--empty">
+            <p class="history-body">Refresh a greeting to save it here.</p>
+            <p class="history-empty-hint">Nothing leaves this browser, and you can reset the log anytime.</p>
+          </li>
+        </ol>
+      </section>
+
       <section id="reasons" class="grid" aria-labelledby="reasons-title" role="list">
         <h2 id="reasons-title" class="sr-only">Reasons to keep saying hello</h2>
         <article role="listitem">
@@ -1044,6 +1285,9 @@
       const themeHint = document.getElementById("theme-hint");
       const motionHint = document.getElementById("motion-hint");
       const filterStatus = document.getElementById("filter-status");
+      const historyList = document.getElementById("history-list");
+      const historyCount = document.getElementById("history-count");
+      const clearHistoryButton = document.getElementById("clear-history");
       const defaultMessage = (message?.dataset.defaultMessage || message?.textContent || "").trim();
 
       const greetings = [
@@ -1090,6 +1334,8 @@
 
       const THEME_KEY = "pantheon-hello-theme";
       const MOTION_KEY = "pantheon-hello-motion";
+      const HISTORY_KEY = "pantheon-hello-history";
+      const HISTORY_LIMIT = 4;
       const createMediaFallback = () => ({
         matches: false,
         addEventListener: () => {},
@@ -1108,6 +1354,126 @@
         } else if (typeof mql.addListener === "function") {
           mql.addListener(callback);
         }
+      };
+
+      const parseHistory = (value) => {
+        if (!value) return [];
+        try {
+          const parsed = JSON.parse(value);
+          return Array.isArray(parsed) ? parsed.filter((item) => typeof item?.text === "string") : [];
+        } catch (error) {
+          return [];
+        }
+      };
+
+      let historyItems = parseHistory(storage.get(HISTORY_KEY));
+
+      const persistHistory = () => {
+        storage.set(HISTORY_KEY, JSON.stringify(historyItems));
+      };
+
+      const describeHistoryCount = (count) => {
+        if (count === 0) return "No greetings yet";
+        if (count === 1) return "1 greeting saved";
+        return `${count} greetings saved`;
+      };
+
+      const formatHistoryTime = (value) => {
+        if (!value) return "Just now";
+        try {
+          return new Intl.DateTimeFormat(undefined, {
+            hour: "numeric",
+            minute: "2-digit"
+          }).format(new Date(value));
+        } catch (error) {
+          return "Just now";
+        }
+      };
+
+      const createHistoryItem = (item, index) => {
+        const entry = document.createElement("li");
+        entry.className = "history-item";
+        const body = document.createElement("p");
+        body.className = "history-body";
+        body.textContent = item.text;
+        entry.appendChild(body);
+
+        const meta = document.createElement("dl");
+        meta.className = "history-meta";
+        const segments = [
+          { label: "Mood", value: item.mood },
+          { label: "Focus", value: item.category },
+          { label: "Intent", value: item.intent },
+          { label: "Captured", value: formatHistoryTime(item.timestamp) }
+        ];
+        segments.forEach((segment) => {
+          const group = document.createElement("div");
+          const dt = document.createElement("dt");
+          dt.textContent = segment.label;
+          const dd = document.createElement("dd");
+          dd.textContent = segment.value || "—";
+          group.appendChild(dt);
+          group.appendChild(dd);
+          meta.appendChild(group);
+        });
+        entry.appendChild(meta);
+
+        const actions = document.createElement("div");
+        actions.className = "history-actions";
+        const copyControl = document.createElement("button");
+        copyControl.type = "button";
+        copyControl.className = "history-copy";
+        copyControl.dataset.copyText = item.text;
+        copyControl.setAttribute("aria-label", `Copy saved greeting ${index + 1}`);
+        const label = document.createElement("span");
+        label.className = "history-copy-label";
+        label.textContent = "Copy";
+        copyControl.appendChild(label);
+        actions.appendChild(copyControl);
+        entry.appendChild(actions);
+
+        return entry;
+      };
+
+      const renderHistory = () => {
+        if (!historyList) return;
+        historyList.textContent = "";
+        if (!historyItems.length) {
+          const emptyState = document.createElement("li");
+          emptyState.className = "history-item history-item--empty";
+          const body = document.createElement("p");
+          body.className = "history-body";
+          body.textContent = "Refresh a greeting to save it here.";
+          const hint = document.createElement("p");
+          hint.className = "history-empty-hint";
+          hint.textContent = "Aurora remembers the last few highlights while this tab is open.";
+          emptyState.append(body, hint);
+          historyList.appendChild(emptyState);
+        } else {
+          historyItems.forEach((item, index) => {
+            historyList.appendChild(createHistoryItem(item, index));
+          });
+        }
+        if (historyCount) {
+          historyCount.textContent = describeHistoryCount(historyItems.length);
+        }
+        if (clearHistoryButton) {
+          clearHistoryButton.disabled = historyItems.length === 0;
+        }
+      };
+
+      const addHistoryEntry = (greeting) => {
+        if (!greeting?.text) return;
+        const entry = {
+          text: greeting.text,
+          mood: greeting.mood,
+          category: greeting.category,
+          intent: greeting.intent,
+          timestamp: new Date().toISOString()
+        };
+        historyItems = [entry, ...historyItems.filter((item) => item.text !== entry.text)].slice(0, HISTORY_LIMIT);
+        persistHistory();
+        renderHistory();
       };
 
       const populateSelect = (selectElement, values) => {
@@ -1250,7 +1616,7 @@
         }
       };
 
-      const updateGreeting = (greeting, { animate = true } = {}) => {
+      const updateGreeting = (greeting, { animate = true, persistHistory = true } = {}) => {
         if (!greeting || !message) {
           renderEmptyState();
           return;
@@ -1267,6 +1633,9 @@
         if (animate) {
           animateMessage();
         }
+        if (persistHistory) {
+          addHistoryEntry(greeting);
+        }
         focusMessage();
       };
 
@@ -1279,7 +1648,7 @@
             if (!greeting) {
               renderEmptyState();
             } else {
-              updateGreeting(greeting, { animate });
+              updateGreeting(greeting, { animate, persistHistory: true });
             }
             setLoading(false);
           }, delay);
@@ -1421,6 +1790,19 @@
         }
       };
 
+      const copyText = async (text) => {
+        if (!text) return false;
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+          try {
+            await navigator.clipboard.writeText(text);
+            return true;
+          } catch (error) {
+            return fallbackCopy(text);
+          }
+        }
+        return fallbackCopy(text);
+      };
+
       const setCopyState = (state, label) => {
         if (!copyButton || !copyLabel) return;
         copyButton.dataset.state = state;
@@ -1429,10 +1811,7 @@
 
       copyButton?.addEventListener("click", async () => {
         const text = message?.textContent?.trim();
-        if (!text) return;
-        const success = navigator.clipboard
-          ? await navigator.clipboard.writeText(text).then(() => true).catch(() => false)
-          : fallbackCopy(text);
+        const success = await copyText(text);
         if (success) {
           setCopyState("copied", "Copied!");
         } else {
@@ -1441,6 +1820,31 @@
         setTimeout(() => {
           setCopyState("", "Copy greeting");
         }, 1800);
+      });
+
+      historyList?.addEventListener("click", async (event) => {
+        const source = event.target instanceof Element ? event.target : null;
+        const target = source?.closest("button[data-copy-text]");
+        if (!target) return;
+        const label = target.querySelector(".history-copy-label");
+        const success = await copyText(target.dataset.copyText || "");
+        target.dataset.state = success ? "copied" : "error";
+        if (label) {
+          label.textContent = success ? "Copied" : "Try again";
+        }
+        window.setTimeout(() => {
+          target.dataset.state = "";
+          if (label) {
+            label.textContent = "Copy";
+          }
+        }, 1500);
+      });
+
+      clearHistoryButton?.addEventListener("click", () => {
+        historyItems = [];
+        persistHistory();
+        renderHistory();
+        clearHistoryButton?.blur();
       });
 
       const attachRipple = () => {
@@ -1461,12 +1865,14 @@
         });
       };
 
+      const shouldSeedHistory = historyItems.length === 0;
+      renderHistory();
       populateFilters();
       updateFilterStatus();
       initTheme();
       initMotion();
       attachRipple();
-      updateGreeting(previousGreeting, { animate: false });
+      updateGreeting(previousGreeting, { animate: false, persistHistory: shouldSeedHistory });
       body.classList.add("is-ready");
       setUpdatedTimestamp();
     </script>
