@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantheon Bot Playground · Hello World</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: radial-gradient(circle at top, #fdfbfb, #ebedee);
+        color: #111827;
+      }
+
+      main {
+        width: 100%;
+        max-width: 520px;
+        background-color: #ffffff;
+        border-radius: 1rem;
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6366f1;
+      }
+
+      h1 {
+        margin: 1rem 0 0.75rem;
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0 auto;
+        max-width: 30ch;
+        color: #475467;
+        font-size: 1rem;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow" aria-label="Pantheon bot development playground">
+        Pantheon Bot · Issue #23
+      </p>
+      <h1>Hello World</h1>
+      <p>
+        Welcome to the Pantheon bot development playground. This minimal page is a
+        healthy starting point for testing deployments and UI improvements.
+      </p>
+      <span class="sr-only">End of Hello World showcase</span>
+    </main>
+  </body>
+</html>
