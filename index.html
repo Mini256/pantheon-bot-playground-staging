@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World · Pantheon Playground</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+          "Helvetica Neue", sans-serif;
+        background-color: #0f172a;
+        color: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at top, #4c6ef5, #1e1b4b 50%, #020617);
+        padding: 2rem;
+      }
+
+      main {
+        width: min(640px, 100%);
+        border-radius: 28px;
+        padding: 3rem;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 40px 80px rgba(15, 23, 42, 0.3);
+        text-align: center;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        main {
+          background: rgba(2, 6, 23, 0.75);
+          color: #e2e8f0;
+        }
+      }
+
+      .eyebrow {
+        letter-spacing: 0.4em;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #6366f1;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 5vw, 3.75rem);
+        margin: 0 0 1rem;
+        color: #0f172a;
+      }
+
+      p {
+        margin: 0 auto 2rem;
+        color: #475569;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 36ch;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.75rem;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.35);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      .cta:focus-visible {
+        outline: 3px solid rgba(99, 102, 241, 0.5);
+        outline-offset: 4px;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 35px rgba(99, 102, 241, 0.5);
+      }
+
+      footer {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: rgba(15, 23, 42, 0.6);
+      }
+
+      footer strong {
+        color: #0f172a;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        h1 {
+          color: #f8fafc;
+        }
+
+        p,
+        footer {
+          color: rgba(248, 250, 252, 0.8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Issue 26</p>
+      <h1>Hello World</h1>
+      <p>
+        Welcome to the Pantheon bot development playground. This simple page ensures the
+        deployment pipeline is wired up correctly before we move on to richer experiences.
+      </p>
+      <a class="cta" href="https://github.com" target="_blank" rel="noreferrer noopener"
+        >Explore the Repo</a
+      >
+      <footer>
+        Built with heart for <strong>Pantheon</strong>
+      </footer>
+    </main>
+  </body>
+</html>
