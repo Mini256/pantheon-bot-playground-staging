@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-size: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #fef3c7, #d9e8ff 50%, #c7d2fe);
+      }
+
+      main {
+        background: rgba(255, 255, 255, 0.85);
+        color: #1f2933;
+        border-radius: 1.5rem;
+        box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.2);
+        padding: clamp(2rem, 5vw, 3.5rem);
+        width: min(100%, 32rem);
+        text-align: center;
+        backdrop-filter: blur(6px);
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 6vw, 3rem);
+        letter-spacing: 0.04em;
+      }
+
+      p {
+        margin: 0;
+        font-size: clamp(1rem, 3.5vw, 1.125rem);
+        color: #4b5563;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hello World</h1>
+      <p>A minimal, responsive hello-world page for issue #26.</p>
+    </main>
+  </body>
+</html>
