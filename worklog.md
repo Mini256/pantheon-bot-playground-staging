@@ -15,3 +15,8 @@
 - Created `tests/test_index_html.py` to assert the presence of the file, required tags, viewport meta, and the “Hello World” text to keep the static page verifiable.
 - Added `.gitignore` entries for `__pycache__/` and `*.pyc` artifacts to keep the repo clean after running Python tests.
 - Test command: `python3 -m unittest discover -s tests` (passes).
+
+## Phase 3 – Visual polish & accessibility
+- Refined the hero card styling with CSS custom properties, a soft gradient background, and `clamp()` sizing so the layout remains comfortable on small and large screens alike.
+- Added a light/dark adaptive palette (via `prefers-color-scheme`) and a pill label that reinforces the mapping to issue #26 without relying solely on context from the repository.
+- Re-ran `python3 -m unittest discover -s tests` to ensure structural tests still pass after the visual refresh.
