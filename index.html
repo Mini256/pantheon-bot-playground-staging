@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Pantheon bot development playground hello world page."
+    />
+    <title>Pantheon Bot Dev Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header__inner">
+        <p class="eyebrow">Pantheon • Playground</p>
+        <p class="status-pill">beta</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <p class="eyebrow eyebrow--hero">Developer sandbox</p>
+            <h1>Hello, Pantheon world!</h1>
+            <p class="hero__lead">
+              Spin up ideas quickly, validate integrations, and showcase the
+              Pantheon bot experience with a polished hello world page.
+            </p>
+            <button class="hero__cta" type="button">Explore the playground</button>
+          </div>
+          <div class="hero__card">
+            <p class="hero__card-title">Quick Stats</p>
+            <ul>
+              <li><span>Latency</span><strong>38 ms</strong></li>
+              <li><span>Responses</span><strong>Resilient</strong></li>
+              <li><span>Mode</span><strong>Developer</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer__inner">
+        <p>&copy; <span id="year"></span> Pantheon Bot Dev Playground</p>
+        <small>Crafted with care for Issue #26</small>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
