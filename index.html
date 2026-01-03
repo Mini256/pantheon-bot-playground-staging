@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World Landing Page</title>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1b4dff, #7cb8ff);
+        color: #0f172a;
+      }
+
+      .hero {
+        width: min(90vw, 32rem);
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1.25rem;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        text-align: center;
+        box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.2);
+      }
+
+      .eyebrow {
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: #475569;
+        margin: 0 0 1rem;
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(2.25rem, 7vw, 3.5rem);
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #334155;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: radial-gradient(circle at top, #0f172a, #020617);
+          color: #e2e8f0;
+        }
+
+        .hero {
+          background: rgba(15, 23, 42, 0.85);
+          color: inherit;
+          box-shadow: 0 1.5rem 3rem rgba(2, 6, 23, 0.7);
+        }
+
+        .eyebrow {
+          color: #94a3b8;
+        }
+
+        p {
+          color: #cbd5f5;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero" role="main">
+      <p class="eyebrow">Issue #26</p>
+      <h1>Hello World</h1>
+      <p>A minimal responsive greeting built for Pantheon.</p>
+    </main>
+  </body>
+</html>
