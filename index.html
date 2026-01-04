@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: radial-gradient(circle at top, #f7f9fc, #dfe7f6 45%, #c3d7f2);
+        --text: #0f172a;
+        --muted: #475569;
+        --card: #ffffffcc;
+        --accent: #2563eb;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      main {
+        width: min(480px, 100%);
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: clamp(1.5rem, 5vw, 3rem);
+        box-shadow: 0 30px 80px rgba(15, 23, 42, 0.2);
+        backdrop-filter: blur(12px);
+        text-align: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0 auto;
+        font-size: clamp(1rem, 4vw, 1.125rem);
+        color: var(--muted);
+        max-width: 32ch;
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          border-radius: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="hello-heading">
+      <div class="card">
+        <p class="eyebrow">Friendly greeting</p>
+        <h1 id="hello-heading">Hello World</h1>
+        <p>The classic first step toward building something great.</p>
+      </div>
+    </main>
+  </body>
+</html>
