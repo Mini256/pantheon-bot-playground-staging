@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A minimal, production-ready Hello World landing page for the Pantheon bot playground." />
+    <title>Hello World | Pantheon Playground</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        --bg-surface: #ffffff;
+        --bg-page: #e2e8f0;
+        --bg-page-dark: #020617;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-primary-dark: #f8fafc;
+        --text-secondary-dark: #c7d2fe;
+        --accent: #6366f1;
+        --accent-dark: #818cf8;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: clamp(2rem, 4vw, 4rem);
+        background: radial-gradient(circle at top, rgba(99, 102, 241, 0.2), transparent 50%), var(--bg-page);
+        color: var(--text-primary);
+      }
+
+      main {
+        width: min(960px, 100%);
+      }
+
+      .hero {
+        background-color: var(--bg-surface);
+        border-radius: 28px;
+        padding: clamp(2.5rem, 5vw, 4rem);
+        box-shadow: 0 35px 80px rgba(15, 23, 42, 0.18);
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        margin: 0 0 1.5rem;
+        color: var(--text-primary);
+      }
+
+      p {
+        margin: 0 auto;
+        max-width: 560px;
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+      }
+
+      .lede {
+        margin-bottom: 1.5rem;
+      }
+
+      .cta {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2.5rem;
+        padding: 0.9rem 2.75rem;
+        border-radius: 999px;
+        background: linear-gradient(120deg, var(--accent), #a855f7);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 150ms ease, box-shadow 150ms ease;
+        box-shadow: 0 12px 30px rgba(99, 102, 241, 0.55);
+      }
+
+      .cta:focus-visible {
+        outline: 3px solid rgba(99, 102, 241, 0.4);
+        outline-offset: 4px;
+      }
+
+      .cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.55);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cta {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          text-align: left;
+        }
+
+        p {
+          max-width: none;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: radial-gradient(circle at top, rgba(129, 140, 248, 0.35), transparent 45%), var(--bg-page-dark);
+          color: var(--text-primary-dark);
+        }
+
+        .hero {
+          background-color: rgba(15, 23, 42, 0.65);
+          backdrop-filter: blur(20px);
+          color: var(--text-primary-dark);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+          color: var(--text-primary-dark);
+        }
+
+        p {
+          color: var(--text-secondary-dark);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="hello-heading">
+      <article class="hero" aria-label="Hello World welcome card">
+        <p class="eyebrow">Pantheon Playground</p>
+        <h1 id="hello-heading">Hello World</h1>
+        <p class="lede">
+          Welcome to a dependable starting point for Pantheon automation experiments. This page ships with zero build
+          steps so it can be deployed from any static host immediately.
+        </p>
+        <p>
+          Use it as a living smoke test for your pipelines or as a visual baseline when extending the playground with
+          richer demos and interactive widgets.
+        </p>
+        <a class="cta" href="#get-started" role="button" aria-label="Explore the playground">
+          Explore the Playground
+        </a>
+      </article>
+    </main>
+  </body>
+</html>
