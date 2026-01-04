@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Production-ready Hello World landing page for Pantheon bot issue #31." />
+    <meta name="theme-color" content="#2563eb" />
+    <title>Hello World | Pantheon Playground</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='62' font-size='54' text-anchor='middle' fill='white' font-family='Inter,Segoe UI,sans-serif'>P</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="logo-mark" aria-hidden="true">P</div>
+        <div class="brand-copy">
+          <p class="brand-name">Pantheon Playground</p>
+          <p class="brand-tagline">Automation crafted with care</p>
+        </div>
+      </header>
+
+      <main class="hero-card" aria-labelledby="hero-title">
+        <p class="eyebrow">Issue #31</p>
+        <h1 id="hero-title">Hello World</h1>
+        <p class="lead">
+          This launch page validates that the Pantheon bot deployment pipeline is healthy and ready for
+          richer automation experiments.
+        </p>
+        <div class="actions">
+          <a class="primary" href="https://github.com/Mini256/pantheon-bot-dev-playground" target="_blank" rel="noreferrer">
+            View Repository
+          </a>
+          <a class="secondary" href="mailto:hello@pantheon.dev">Contact Team</a>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          &copy; <span id="year"></span> Pantheon Playground. All systems green.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear().toString();
+      }
+    </script>
+  </body>
+</html>
