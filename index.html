@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World</title>
+    <style>
+      :root {
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: #0f172a;
+        background-color: #e2e8f0;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      }
+
+      main {
+        width: min(320px, 100%);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2.5rem, 8vw, 3rem);
+        letter-spacing: 0.05em;
+      }
+
+      p {
+        margin: 0;
+        color: #475569;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hello World</h1>
+      <p>A tiny, clean greeting page for issue #26.</p>
+    </main>
+  </body>
+</html>
