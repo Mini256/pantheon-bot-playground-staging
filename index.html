@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World | Pantheon Playground</title>
+    <meta
+      name="description"
+      content="A simple, elegant hello world page for the Pantheon bot development playground."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg-light: #f4f6fb;
+        --bg-dark: #0f172a;
+        --card-light: #ffffff;
+        --card-dark: #16213f;
+        --text-light: #0f172a;
+        --text-dark: #f8fafc;
+        --accent: #3b82f6;
+        --accent-strong: #1d4ed8;
+        --shadow-light: 0 20px 45px rgba(15, 23, 42, 0.15);
+        --shadow-dark: 0 20px 45px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+          "Helvetica Neue", sans-serif;
+        background: linear-gradient(135deg, #0ea5e9, #6366f1);
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 3vw, 3rem);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: var(--text-dark);
+        }
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+        padding: 0.75rem 1rem;
+        background: #ffffff;
+        color: #0f172a;
+        text-decoration: none;
+        border-radius: 0 0 0.5rem 0;
+        font-weight: 600;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      main {
+        width: min(620px, 100%);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text-light);
+        border-radius: 1.5rem;
+        padding: clamp(2rem, 4vw, 3rem);
+        box-shadow: var(--shadow-light);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        main {
+          background: rgba(15, 23, 42, 0.85);
+          color: var(--text-dark);
+          box-shadow: var(--shadow-dark);
+        }
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        color: rgba(15, 23, 42, 0.7);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .eyebrow {
+          color: rgba(248, 250, 252, 0.7);
+        }
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
+        font-size: clamp(1rem, 2.25vw, 1.2rem);
+        line-height: 1.6;
+        color: rgba(15, 23, 42, 0.8);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        p {
+          color: rgba(248, 250, 252, 0.85);
+        }
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+        padding: 0.9rem 1.5rem;
+        border-radius: 999px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 600;
+        background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+        box-shadow: 0 12px 24px rgba(59, 130, 246, 0.35);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      .cta:focus-visible {
+        outline: 3px solid rgba(59, 130, 246, 0.5);
+        outline-offset: 4px;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(59, 130, 246, 0.45);
+      }
+
+      .cta:active {
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cta,
+        body {
+          transition: none;
+        }
+      }
+
+      footer {
+        margin-top: 2.5rem;
+        font-size: 0.9rem;
+        color: rgba(15, 23, 42, 0.7);
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      footer strong {
+        color: inherit;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        footer {
+          color: rgba(248, 250, 252, 0.7);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to main content</a>
+    <main id="content" aria-labelledby="hero-title">
+      <header>
+        <p class="eyebrow">Pantheon Bot Playground • Issue 31</p>
+        <h1 id="hero-title">Hello, World!</h1>
+      </header>
+      <p>
+        This lightweight page proves the stack is wired up and ready to build delightful,
+        production-grade experiences. It is responsive, accessible, and easy to extend when the
+        next idea strikes.
+      </p>
+      <a
+        class="cta"
+        href="https://github.com/Mini256/pantheon-bot-dev-playground"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View Playground Repository</a
+      >
+      <footer>
+        <span><strong>Status:</strong> Prototype-ready</span>
+        <span><strong>Stack:</strong> Pure HTML + CSS</span>
+        <span><strong>Made for:</strong> Pantheon builders</span>
+      </footer>
+    </main>
+  </body>
+</html>
