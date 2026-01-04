@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A minimal, production-ready Hello World page for the Pantheon bot playground." />
+    <title>Hello World | Pantheon Playground</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --surface-color: #ffffff;
+        --surface-color-dark: #111827;
+        --text-color: #0f172a;
+        --text-color-dark: #f8fafc;
+        --accent-color: #6366f1;
+        --accent-color-dark: #818cf8;
+        --muted-color: #475569;
+        --muted-color-dark: #94a3b8;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #e2e8f0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, rgba(99, 102, 241, 0.15), transparent 55%),
+          var(--body-bg, #e2e8f0);
+        background-color: #e2e8f0;
+        padding: 2rem;
+      }
+
+      main {
+        width: 100%;
+        max-width: 640px;
+      }
+
+      .card {
+        background-color: var(--surface-color);
+        color: var(--text-color);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin: 0 0 1rem;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        margin: 0 0 1rem;
+        color: var(--text-color);
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: var(--muted-color);
+      }
+
+      .lede {
+        margin-bottom: 2rem;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.9rem 2.5rem;
+        border: none;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #fff;
+        background: linear-gradient(120deg, var(--accent-color), #a855f7);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta-button:focus-visible {
+        outline: 3px solid rgba(99, 102, 241, 0.35);
+        outline-offset: 4px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.45);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --body-bg: #0b1120;
+          background-color: #0b1120;
+        }
+
+        body {
+          background-color: #0b1120;
+        }
+
+        .card {
+          background-color: var(--surface-color-dark);
+          color: var(--text-color-dark);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        h1 {
+          color: var(--text-color-dark);
+        }
+
+        p {
+          color: var(--muted-color-dark);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article class="card" aria-label="Hello World greeting">
+        <p class="eyebrow">Pantheon Bot Playground</p>
+        <h1>Hello World</h1>
+        <p class="lede">
+          Welcome to a clean slate for experimentation—this minimal experience proves your automation stack is wired up and ready for real work.
+        </p>
+        <p>
+          Everything you see lives inside a single, portable HTML file so it can be served from any static host or CDN without additional tooling.
+        </p>
+        <div style="margin-top: 2rem">
+          <button class="cta-button" type="button" aria-label="Get started">
+            Explore the Playground
+          </button>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
