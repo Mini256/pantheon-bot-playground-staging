@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A minimal, responsive Hello World page for pantheon issue #32." />
+    <meta name="color-scheme" content="light dark" />
+    <title>Hello World</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --text: #0f172a;
+        --accent: #2563eb;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -200%);
+        padding: 0.65rem 1.25rem;
+        background: var(--accent);
+        color: #fff;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease;
+      }
+
+      .skip-link:focus-visible {
+        transform: translate(-50%, 20%);
+      }
+
+      header,
+      footer {
+        padding: 1rem 1.5rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(6px);
+      }
+
+      header {
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      }
+
+      footer {
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        font-size: 0.9rem;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
+
+      .card {
+        width: min(640px, 100%);
+        background: var(--card);
+        border-radius: 1.5rem;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        letter-spacing: 0.02em;
+        color: var(--accent);
+      }
+
+      p {
+        margin: 0 auto;
+        max-width: 28rem;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: rgba(15, 23, 42, 0.85);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f172a;
+          --card: #111c3a;
+          --text: #e2e8f0;
+          --accent: #60a5fa;
+        }
+
+        header,
+        footer {
+          background: rgba(15, 23, 42, 0.65);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#page-title">Skip to main content</a>
+    <header>
+      <strong>Pantheon Playground</strong>
+    </header>
+    <main>
+      <section class="card" aria-labelledby="page-title">
+        <h1 id="page-title">Hello World</h1>
+        <p>
+          Welcome to the Pantheon bot development playground. This lightweight page demonstrates a
+          clean, responsive, and accessible “Hello World” experience.
+        </p>
+      </section>
+    </main>
+    <footer>&copy; <span id="year"></span> Pantheon Bot Playground</footer>
+    <script>
+      // Keeps the footer year current without needing manual updates.
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
