@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pantheon Playground · Hello World</title>
+    <meta
+      name="description"
+      content="A clean, responsive, and accessible hello world page for the Pantheon bot development playground."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f6fb;
+        --card: rgba(255, 255, 255, 0.9);
+        --border: rgba(15, 23, 42, 0.08);
+        --text: #0f172a;
+        --text-muted: #475569;
+        --primary: #2563eb;
+        --primary-strong: #1e3a8a;
+        --shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --bg: #0f172a;
+          --card: rgba(15, 23, 42, 0.8);
+          --border: rgba(255, 255, 255, 0.08);
+          --text: #f8fafc;
+          --text-muted: #cbd5f5;
+          --primary: #7dd3fc;
+          --primary-strong: #38bdf8;
+          --shadow: 0 25px 60px rgba(2, 6, 23, 0.65);
+        }
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at top, rgba(37, 99, 235, 0.25), transparent 60%),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        line-height: 1.6;
+      }
+      .skip-link {
+        position: absolute;
+        left: 50%;
+        top: 1rem;
+        transform: translate(-50%, -200%);
+        background: var(--card);
+        color: var(--primary);
+        padding: 0.75rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: transform 150ms ease;
+      }
+      .skip-link:focus-visible {
+        transform: translate(-50%, 0);
+        outline: 3px solid rgba(37, 99, 235, 0.5);
+        outline-offset: 4px;
+      }
+      .shell {
+        width: min(960px, 100%);
+        padding: clamp(1.75rem, 4vw, 3.5rem);
+        border-radius: 32px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(6px);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      header.hero {
+        text-align: left;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        line-height: 1.1;
+      }
+      .lead {
+        margin-top: 0.75rem;
+        margin-bottom: 0;
+        color: var(--text-muted);
+        font-size: clamp(1.125rem, 2vw, 1.35rem);
+      }
+      main {
+        outline: none;
+      }
+      .card {
+        display: grid;
+        gap: clamp(1rem, 3vw, 2.5rem);
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent);
+      }
+      .card h2 {
+        margin: 0;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+      .card p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+      .action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.85rem 1.75rem;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--primary);
+        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.35);
+        transition: transform 200ms ease, box-shadow 200ms ease, background 150ms ease;
+      }
+      .cta svg {
+        width: 1rem;
+        height: 1rem;
+        fill: currentColor;
+      }
+      .cta:hover,
+      .cta:focus-visible {
+        background: var(--primary-strong);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+        outline: none;
+      }
+      .note {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .feature-item {
+        padding: 1rem 1.25rem;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.4);
+        color: var(--text);
+      }
+      .feature-item strong {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        text-align: left;
+      }
+      @media (max-width: 640px) {
+        body {
+          padding: 1rem;
+        }
+        .shell {
+          border-radius: 24px;
+          padding: 1.5rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+      <header class="hero">
+        <p class="eyebrow">Pantheon Playground</p>
+        <h1>Hello, world.</h1>
+        <p class="lead">
+          A calm, elegant sandbox to verify the Pantheon bot development workflow with a11y-first
+          HTML and thoughtful typography.
+        </p>
+      </header>
+      <main id="main-content" tabindex="-1">
+        <section class="card" aria-labelledby="intro-heading">
+          <div>
+            <h2 id="intro-heading">Purpose-built clarity</h2>
+            <p>
+              This minimal page highlights semantic HTML5 structure, responsive spacing, and
+              accessible controls. Try tabbing through the interface or viewing it on a narrow
+              screen—the layout adapts while preserving contrast and rhythm.
+            </p>
+          </div>
+          <div class="action-row">
+            <a class="cta" href="#features" aria-label="View the highlighted hello world features">
+              Explore
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M6 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <p class="note">Keyboard-friendly, screen-reader aware, and WCAG AA aligned.</p>
+          </div>
+          <ul class="feature-grid" id="features">
+            <li class="feature-item">
+              <strong>Adaptive layout</strong>
+              Clamp-based typography and auto-fit grids keep the experience balanced from phones to
+              large monitors.
+            </li>
+            <li class="feature-item">
+              <strong>Accessible focus</strong>
+              Skip navigation, focus-visible treatments, and descriptive labels ensure confident
+              navigation.
+            </li>
+            <li class="feature-item">
+              <strong>Modern palette</strong>
+              Soft gradients, glassmorphism accents, and dark-mode friendly tokens keep things
+              polished without extra assets.
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer>
+        <small>
+          Crafted for issue #31 · <time datetime="2024-12-17">December 17, 2024</time>
+        </small>
+      </footer>
+    </div>
+  </body>
+</html>
