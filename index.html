@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A minimal Hello World experience for Pantheon bot playground." />
+    <title>Hello World | Pantheon Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="logo-mark" aria-hidden="true">P</div>
+        <div class="brand-copy">
+          <p class="brand-name">Pantheon Playground</p>
+          <p class="brand-tagline">Automation crafted with care</p>
+        </div>
+      </header>
+
+      <main class="hero-card" aria-labelledby="hero-title">
+        <p class="eyebrow">Issue #31</p>
+        <h1 id="hero-title">Hello World</h1>
+        <p class="lead">
+          This lightweight launch page confirms the deployment pipeline is healthy and ready for
+          richer Pantheon bot experiences.
+        </p>
+        <div class="actions">
+          <a class="primary" href="https://github.com/Mini256/pantheon-bot-dev-playground" target="_blank" rel="noreferrer">View Repository</a>
+          <a class="secondary" href="mailto:hello@pantheon.dev">Contact Team</a>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          &copy; <span id="year"></span> Pantheon Playground. All systems green.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear().toString();
+      }
+    </script>
+  </body>
+</html>
