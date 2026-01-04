@@ -1,0 +1,8 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "description": "Hello World webpage implementation for issue #26",
+  "scripts": {
+    "test": "node --test \"./tests/**/*.js\""
+  }
+}
