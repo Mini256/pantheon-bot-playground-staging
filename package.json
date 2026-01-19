@@ -1,0 +1,16 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "description": "Hello World demo page with automated smoke tests",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "hello-world",
+    "pantheon",
+    "playground"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs"
+}

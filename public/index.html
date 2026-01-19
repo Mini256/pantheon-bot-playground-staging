@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A clean, professional Hello World page for the Pantheon bot development playground."
+    />
+    <title>Hello World · Pantheon Playground</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --surface: #ffffff;
+        --surface-muted: #f8fafc;
+        --text-primary: #0f172a;
+        --text-muted: #475569;
+        --accent: #8b5cf6;
+        --brand-gradient: linear-gradient(125deg, #4338ca 0%, #6366f1 50%, #ec4899 100%);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top, #eef2ff, #f8fafc 60%, #f1f5f9 100%);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      main {
+        width: 100%;
+        max-width: 720px;
+      }
+
+      .hero-card {
+        background: var(--surface);
+        border-radius: 1.5rem;
+        padding: clamp(2rem, 5vw, 3.5rem);
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.18);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        background: var(--surface-muted);
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      h1 {
+        margin: 1rem 0 0.75rem;
+        font-size: clamp(2.75rem, 5vw, 3.5rem);
+        letter-spacing: -0.04em;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .tagline {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+        margin-bottom: 1.75rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.85rem;
+        margin: 0 0 2rem;
+        padding: 0;
+      }
+
+      .feature-list li {
+        background: var(--surface-muted);
+        padding: 1rem 1.25rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .feature-list li span {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        margin-top: 0.25rem;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.95rem 1.8rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        color: #fff;
+        background-image: var(--brand-gradient);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.35);
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 1.25rem;
+        }
+
+        .feature-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero-card" aria-labelledby="hero-title">
+        <span class="badge">Pantheon Playground</span>
+        <h1 id="hero-title">Hello World</h1>
+        <p class="tagline" data-testid="tagline">
+          A polished greeting for the Pantheon bot development playground, designed to demonstrate a professional yet
+          welcoming sandbox experience.
+        </p>
+        <ul class="feature-list">
+          <li>
+            Responsive layout
+            <span>Adapts beautifully across desktop and mobile viewports.</span>
+          </li>
+          <li>
+            Accessibility ready
+            <span>Semantic structure keeps screen reader and keyboard users in focus.</span>
+          </li>
+          <li>
+            Production polish
+            <span>Curated typography, depth, and color bring confidence to first impressions.</span>
+          </li>
+        </ul>
+        <a class="cta" href="#start" aria-label="Begin exploring the Pantheon playground">
+          Get Started
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
