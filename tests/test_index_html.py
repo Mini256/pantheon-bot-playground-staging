@@ -1,7 +1,7 @@
-import re
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 
 class _AuditParser(HTMLParser):
@@ -9,13 +9,15 @@ class _AuditParser(HTMLParser):
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self.tags: list[tuple[str, dict[str, str]]] = []
-        self.meta: list[dict[str, str]] = []
+        # Use typing.* annotations so this test suite runs on older Python 3
+        # versions (many environments still ship 3.8/3.9 as `python3`).
+        self.tags: List[Tuple[str, Dict[str, str]]] = []
+        self.meta: List[Dict[str, str]] = []
         self._in_title = False
-        self.title_text: list[str] = []
-        self.text_chunks: list[str] = []
+        self.title_text: List[str] = []
+        self.text_chunks: List[str] = []
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
         attrs_dict = {k: (v or "") for k, v in attrs}
         self.tags.append((tag.lower(), attrs_dict))
         if tag.lower() == "meta":
