@@ -1,0 +1,32 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "description": "Minimal hello world static page with tests",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "serve public -l 4173",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mini256/pantheon-bot-dev-playground.git"
+  },
+  "keywords": [
+    "hello-world",
+    "static-site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Mini256/pantheon-bot-dev-playground/issues"
+  },
+  "homepage": "https://github.com/Mini256/pantheon-bot-dev-playground#readme",
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "jsdom": "^27.4.0",
+    "serve": "^14.2.5",
+    "vitest": "^4.0.17"
+  }
+}

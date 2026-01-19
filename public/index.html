@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pantheon Playground · Hello World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --page-bg: radial-gradient(circle at top, #dfe9ff 0%, #f5f7fb 55%, #ffffff 100%);
+        --card-bg: #ffffff;
+        --text-muted: #475569;
+        --accent: #2563eb;
+        --accent-soft: rgba(37, 99, 235, 0.16);
+        --border: rgba(15, 23, 42, 0.08);
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--page-bg);
+        color: #0f172a;
+        padding: 2rem;
+      }
+
+      .hero {
+        width: min(600px, 100%);
+      }
+
+      .hello-card {
+        background: var(--card-bg);
+        border-radius: 1.25rem;
+        padding: clamp(2rem, 4vw, 3rem);
+        box-shadow: 0 25px 60px -25px rgba(15, 23, 42, 0.3);
+        border: 1px solid var(--border);
+      }
+
+      .eyebrow {
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 3.2rem);
+        margin: 0 0 1rem 0;
+      }
+
+      .lede {
+        margin: 0 0 2rem 0;
+        line-height: 1.5;
+        color: var(--text-muted);
+        font-size: 1.1rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .button {
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.85rem 1.4rem;
+        border-radius: 999px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 12px 25px -15px rgba(37, 99, 235, 0.8);
+      }
+
+      .button.primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.ghost {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 2.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      footer a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero">
+      <section class="hello-card" role="main" aria-labelledby="hello-title">
+        <p class="eyebrow">Mini256 · Pantheon Playground</p>
+        <h1 id="hello-title">Hello, World!</h1>
+        <p class="lede">
+          A friendly landing spot for quick experiments. This page keeps the setup light, the
+          styling clean, and demonstrates how to add tests even for static content.
+        </p>
+        <div class="actions">
+          <a
+            class="button primary"
+            href="https://github.com/Mini256/pantheon-bot-dev-playground"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Explore Repo
+          </a>
+          <a
+            class="button ghost"
+            href="https://github.com/Mini256/pantheon-bot-dev-playground#readme"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            View README
+          </a>
+        </div>
+      </section>
+      <footer>
+        Crafted with ❤️ for the Pantheon bot playground. Edit <code>public/index.html</code> to
+        extend it.
+      </footer>
+    </main>
+  </body>
+</html>
