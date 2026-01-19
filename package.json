@@ -1,0 +1,12 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0",
+    "vitest": "^2.0.5"
+  }
+}

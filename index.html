@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World &bull; Pantheon Playground</title>
+    <style>
+      :root {
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --panel: rgba(255, 255, 255, 0.9);
+        --text-primary: #0f172a;
+        --text-muted: #475569;
+        --accent: #2563eb;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: radial-gradient(circle at top, #dbeafe, #f8fafc 45%, #eef2ff 90%);
+        color: var(--text-primary);
+      }
+
+      main {
+        width: min(600px, 100%);
+        padding: 2.5rem;
+        background: var(--panel);
+        border-radius: 1.5rem;
+        box-shadow:
+          0 20px 45px rgba(15, 23, 42, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        text-align: center;
+        border: 1px solid rgba(99, 102, 241, 0.15);
+      }
+
+      h1 {
+        margin: 1rem 0 0.75rem;
+        font-size: clamp(2rem, 4vw, 3.25rem);
+        letter-spacing: -0.04em;
+      }
+
+      p {
+        margin: 0 auto 1.25rem;
+        max-width: 45ch;
+        line-height: 1.6;
+        color: var(--text-muted);
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        font-size: 0.75rem;
+        color: var(--accent);
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.95rem 2.25rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 150ms ease, box-shadow 150ms ease;
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+      }
+
+      .cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 15px 24px rgba(37, 99, 235, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="hello-world-title">
+      <span class="eyebrow" role="text">Pantheon Playground</span>
+      <h1 id="hello-world-title">Hello World</h1>
+      <p class="lead">
+        A confident greeting from a minimal front-end stack &mdash; proof that the toolchain is wired up
+        and ready for richer experiences.
+      </p>
+      <button class="cta" type="button">Get Started</button>
+    </main>
+  </body>
+</html>
