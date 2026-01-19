@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello from Pantheon</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #05060a;
+        color: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top, #1f2453, #05060a 60%);
+        padding: 1.5rem;
+      }
+
+      main {
+        width: min(420px, 100%);
+        background: rgba(9, 12, 22, 0.85);
+        border-radius: 1.25rem;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 25px 55px rgba(5, 6, 10, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+        text-align: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #7dd3fc;
+        font-size: 0.8rem;
+      }
+
+      h1 {
+        margin: 0.5rem 0;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+
+      p {
+        color: #cbd5f5;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+
+      button {
+        border: none;
+        padding: 0.95rem 1.75rem;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #05060a;
+        background: linear-gradient(120deg, #7dd3fc, #c084fc);
+        cursor: pointer;
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      button:hover,
+      button:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 15px 30px rgba(125, 211, 252, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Mini256 · Pantheon</p>
+      <h1>Hello, world!</h1>
+      <p>
+        This micro playground ships a single, delightful landing card so the Pantheon
+        bots have something beautiful to look at.
+      </p>
+      <button type="button">Explore the Playground</button>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "description": "Minimal hello world showcase for Pantheon bot development tasks.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "serve -l 4173",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "hello-world",
+    "pantheon",
+    "playground"
+  ],
+  "devDependencies": {
+    "jsdom": "^24.1.1",
+    "serve": "^14.2.5",
+    "vitest": "^1.6.0"
+  }
+}
