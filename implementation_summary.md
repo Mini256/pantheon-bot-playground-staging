@@ -6,7 +6,7 @@
 - Added a small, modern stylesheet in `styles.css` (CSS variables, `clamp()` sizing, reduced-motion support).
 - Expanded `README.md` with instructions for viewing the page locally.
 - Added lightweight Python unittests in `tests/test_index_html.py` to validate the presence of core HTML structure, required meta tags, and styling linkage.
-- Logged the code-review outcome in `code_review.log`.
+- Verified via a lightweight code review (no P0/P1 issues found).
 
 ## Approach
 

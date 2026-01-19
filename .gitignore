@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 
+# Local workflow artifacts (kept outside the repo).
+worklog.md
+code_review.log
