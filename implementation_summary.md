@@ -5,6 +5,7 @@
 - `index.html`: semantic HTML5 page that renders a centered "Hello World" hero.
 - `styles.css`: responsive, modern styling (gradient background, accessible card
   layout, focus styles, reduced-motion support).
+- `code_review.log`: P0/P1 review results for this change set.
 - `scripts/verify.sh`: lightweight checks for required HTML structure/content.
 - `README.md`: instructions for viewing the page locally.
 - `worklog.md`: design notes and verification notes for this change.
