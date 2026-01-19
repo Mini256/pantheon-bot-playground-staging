@@ -39,6 +39,7 @@ Repository verification:
 - Added `index.html` and `styles.css` at the repository root.
 - Updated `README.md` with steps to open the page directly or run a local web server.
 - Added `implementation_summary.md` with a concise explanation + verification commands.
+- Added `.gitignore` entries to avoid committing Python bytecode (`__pycache__/`, `*.pyc`).
 
 ### Verification
 - `python3 -m unittest -v` -> OK
