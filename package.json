@@ -1,0 +1,20 @@
+{
+  "name": "pantheon-bot-dev-playground",
+  "version": "1.0.0",
+  "description": "Hello World demo page with automated smoke test",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mini256/pantheon-bot-dev-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Mini256/pantheon-bot-dev-playground/issues"
+  },
+  "homepage": "https://github.com/Mini256/pantheon-bot-dev-playground#readme"
+}
