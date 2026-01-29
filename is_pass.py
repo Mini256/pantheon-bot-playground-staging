@@ -7,6 +7,6 @@
 
 def is_pass(score: int) -> bool:
     """判断 score 是否及格。"""
-    if score > 60:
+    if score >= 60:
         return True
     return False
