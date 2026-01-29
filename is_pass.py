@@ -36,6 +36,6 @@ def analyze_scores(scores):
     print("不及格人数:", failed)
 
 
-# 示例数据
+# test data
 students_scores = [59, 60, 61, 80, 45, 100]
 analyze_scores(students_scores)
