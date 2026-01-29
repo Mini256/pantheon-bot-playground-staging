@@ -13,6 +13,8 @@ def is_pass(score):
 
 
 def calculate_average(scores):
+    if not scores:
+        return 0.0
     total = 0
     for s in scores:
         total += s
@@ -37,5 +39,6 @@ def analyze_scores(scores):
 
 
 # 示例数据
-students_scores = [59, 60, 61, 80, 45, 100]
-analyze_scores(students_scores)
+if __name__ == "__main__":
+    students_scores = [59, 60, 61, 80, 45, 100]
+    analyze_scores(students_scores)
