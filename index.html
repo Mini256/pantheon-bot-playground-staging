@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World</title>
+    <meta name="description" content="A simple Hello World page for issue #32." />
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f7fb;
+        --surface: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: rgba(15, 23, 42, 0.14);
+        --shadow: 0 18px 50px rgba(2, 6, 23, 0.12);
+        --focus: #2563eb;
+        --radius: 18px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --surface: rgba(255, 255, 255, 0.06);
+          --text: #e5e7eb;
+          --muted: #a7b0c2;
+          --border: rgba(255, 255, 255, 0.16);
+          --shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+          --focus: #93c5fd;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        line-height: 1.5;
+        background: radial-gradient(1200px 600px at 20% 0%, rgba(37, 99, 235, 0.18), transparent 60%),
+          radial-gradient(900px 500px at 80% 20%, rgba(168, 85, 247, 0.14), transparent 60%), var(--bg);
+        color: var(--text);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.75rem;
+        top: 0.75rem;
+        padding: 0.6rem 0.9rem;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transform: translateY(-200%);
+        transition: transform 160ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+        outline: 3px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      .page {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      header,
+      footer {
+        padding: clamp(1rem, 3vw, 1.5rem);
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+      }
+
+      .brand {
+        width: min(60rem, 100%);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: baseline;
+      }
+
+      .brand strong {
+        letter-spacing: 0.02em;
+      }
+
+      main {
+        padding: clamp(1rem, 4vw, 2rem);
+        display: grid;
+        place-items: center;
+      }
+
+      .card {
+        width: min(42rem, 100%);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: clamp(1.25rem, 4vw, 2rem);
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.15;
+      }
+
+      p {
+        margin: 0.85rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.2vw, 1.125rem);
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="page">
+      <header>
+        <div class="brand" aria-label="Site header">
+          <strong>pantheon-bot-dev-playground</strong>
+          <span>Issue #32</span>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="card" aria-label="Hello World">
+          <h1>Hello World</h1>
+          <p>A minimal, responsive HTML5 page with semantic markup and accessible defaults.</p>
+        </section>
+      </main>
+
+      <footer>
+        <small>&copy; <span id="year">2026</span> Mini256</small>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
