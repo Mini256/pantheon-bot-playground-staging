@@ -25,3 +25,25 @@ Validation approach:
   - includes HTML5 doctype and key semantic tags
   - contains “Hello World” in an `h1`
   - includes a mobile viewport meta tag
+
+## Phase 2: TDD implementation
+
+Changes implemented:
+
+- Added `scripts/validate_index_html.py` (lightweight HTML requirements validator).
+- Added `index.html` in the repo root with:
+  - HTML5 structure (`<!doctype html>`, `html/head/body`)
+  - semantic landmarks (`header`, `main`, `footer`)
+  - accessible defaults (`lang`, viewport meta, skip link, focus-visible styles)
+  - responsive layout and typography (`clamp()`, max-width card layout)
+  - light/dark color support via `prefers-color-scheme`
+
+Validation results:
+
+- `python3 scripts/validate_index_html.py` → `PASS: index.html looks good`
+
+Git:
+
+- Branch: `pantheon/feat-hello-world-webpage-bb6d0034-3922-4ed9-8a4d-cc3e593b05a4`
+- Commit: `ff4f2fb` (`feat: add Hello World webpage (issue #32)`)
+- Pushed: **no** (per instructions)
