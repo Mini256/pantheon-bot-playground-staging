@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Hello World webpage for issue #32." />
+    <title>Hello World</title>
+    <style>
+      :root {
+        --bg-0: #eef2ff;
+        --bg-1: #f8fafc;
+        --surface: rgba(255, 255, 255, 0.82);
+        --text: #0f172a;
+        --muted: #475569;
+        --border: rgba(15, 23, 42, 0.14);
+        --shadow: 0 18px 40px rgba(2, 6, 23, 0.14);
+        --accent: #4f46e5;
+        --accent-glow: rgba(79, 70, 229, 0.18);
+        --accent-soft: rgba(79, 70, 229, 0.08);
+        --accent-ring: rgba(79, 70, 229, 0.16);
+        --radius: 16px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-0: #0b1020;
+          --bg-1: #111827;
+          --surface: rgba(17, 24, 39, 0.78);
+          --text: #e5e7eb;
+          --muted: #a1a1aa;
+          --border: rgba(229, 231, 235, 0.16);
+          --shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+          --accent: #818cf8;
+          --accent-glow: rgba(129, 140, 248, 0.22);
+          --accent-soft: rgba(129, 140, 248, 0.12);
+          --accent-ring: rgba(129, 140, 248, 0.2);
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 800px at 15% 10%, var(--bg-0), transparent 55%),
+          radial-gradient(
+            900px 700px at 85% 0%,
+            var(--accent-glow),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg-1), var(--bg-0));
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.75rem;
+        top: 0.75rem;
+        z-index: 10;
+        padding: 0.6rem 0.85rem;
+        border-radius: 0.85rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        transform: translateY(-220%);
+        transition: transform 180ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.25rem, 4vw, 2.75rem);
+      }
+
+      .card {
+        width: 100%;
+        max-width: 52rem;
+        padding: clamp(1.25rem, 4vw, 2.25rem);
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .kicker {
+        margin: 0 0 0.75rem;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .subtitle {
+        margin: 0.85rem 0 0;
+        max-width: 65ch;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.3vw, 1.125rem);
+        line-height: 1.65;
+      }
+
+      .meta {
+        margin-top: 1.6rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.35rem 0.7rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--accent-soft);
+      }
+
+      .dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px var(--accent-ring);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 0.6rem;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <main id="content">
+      <article class="card" aria-labelledby="page-title">
+        <header>
+          <p class="kicker">Pantheon Bot Dev Playground</p>
+          <h1 id="page-title">Hello World</h1>
+          <p class="subtitle">
+            A minimal, responsive HTML5 page for issue #32—semantic markup, accessible defaults, and no external
+            dependencies.
+          </p>
+        </header>
+
+        <footer class="meta">
+          <span class="badge"><span class="dot" aria-hidden="true"></span>Issue #32</span>
+          <span>Built with semantic HTML + CSS</span>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
